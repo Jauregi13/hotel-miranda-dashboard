@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import { Header } from "../Header/Header"
 import { SideMenu } from "../SideMenu/SideMenu"
 import { MainStyled } from "./LayoutStyled"
@@ -51,7 +51,7 @@ export const Layout = () => {
         <Header title={title}/>
         <SideMenu />
         <MainStyled>
-            
+            <Outlet />
         </MainStyled>
 
         

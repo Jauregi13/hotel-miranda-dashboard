@@ -4,7 +4,7 @@ export const SideMenuStyled = styled.aside`
     padding-top: 2em;
     position: fixed;
     top: 0;
-    width: 25%;
+    width: 20%;
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
 

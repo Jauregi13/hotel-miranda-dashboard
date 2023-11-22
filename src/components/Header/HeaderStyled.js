@@ -5,8 +5,8 @@ export const HeaderStyled = styled.header`
     position: fixed;
     top: 0;
     z-index: 1000;
-    width: 75%;
-    left: 25%;
+    width: 80%;
+    left: 20%;
     height: 14vh;
     box-shadow: 0px 3px 10px #00000005;
 

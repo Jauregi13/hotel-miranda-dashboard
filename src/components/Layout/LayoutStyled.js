@@ -4,8 +4,8 @@ export const MainStyled = styled.main`
 
     position: absolute;
     top: 14vh;
-    left: 25%;
-    width:75%;
+    left: 20%;
+    width:80%;
     min-height:86vh;
     background-color: #F8F8F8;
 
