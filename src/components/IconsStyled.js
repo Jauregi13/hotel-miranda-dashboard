@@ -7,6 +7,8 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { TbLogout } from "react-icons/tb";
 import { GoBell } from "react-icons/go";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { LiaBedSolid } from "react-icons/lia";
+
 
 const iconStyle = `
 
@@ -63,5 +65,21 @@ export const BellIcon = styled(GoBell)`
 export const EmailIcon = styled(MdOutlineMailOutline)`
 
     ${iconStyle}
+
+`
+
+const KPIStyled = `
+
+    background-color: #FFEDEC;
+    padding: 1em;
+    color: #E23428;
+    border-radius: 8px;
+`
+
+export const BedIcon = styled(LiaBedSolid)`
+
+    ${iconStyle}
+    ${KPIStyled}
+
 
 `

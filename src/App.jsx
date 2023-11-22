@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './components/Layout/Layout'
-import { Home } from './pages/Home'
+import { Home } from './pages/Home/Home'
 import { Room } from './pages/Room'
 import styled, { ThemeProvider } from 'styled-components'
 
@@ -25,6 +25,10 @@ function App() {
         font-size: 0.75rem;
         font-weight: 300;
         line-height: 0;
+
+      `,
+      p: `
+        font-size: 0.875rem;
 
       `
     }
