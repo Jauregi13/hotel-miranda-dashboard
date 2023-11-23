@@ -5,7 +5,7 @@ import { TBodyStyled } from "../components/Table/TbodyStyled"
 import { TheadStyled } from "../components/Table/TheadStyled"
 
 
-export const Room = () => {
+export const Rooms = () => {
 
     return (
 
@@ -29,7 +29,7 @@ export const Room = () => {
                     <td><p>AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi</p></td>
                     <td><p>$145/night</p></td>
                     <td><p>$120/night</p></td>
-                    <td><ButtonStyled available="true">Available</ButtonStyled></td>
+                    <td><ButtonStyled status="available">Available</ButtonStyled></td>
                 </tr>
                 <tr>
                     <td><RoomName /></td>
@@ -37,7 +37,7 @@ export const Room = () => {
                     <td><p>AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi</p></td>
                     <td><p>$145/night</p></td>
                     <td><p>$120/night</p></td>
-                    <td><ButtonStyled booked="true">Available</ButtonStyled></td>
+                    <td><ButtonStyled status="booked-rooms">Booked</ButtonStyled></td>                    
                 </tr>
             </TBodyStyled>
         </TableStyled>

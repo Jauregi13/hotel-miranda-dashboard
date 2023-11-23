@@ -9,9 +9,13 @@ export const TBodyStyled = styled.tbody`
         padding: 1em;
         padding-bottom: 0.5em;
         text-align: start;
-        border-bottom: 1px solid #F5F5F5;
+        
         max-width: 250px;
 
+    }
+
+    & tr > *:not(:last-child){
+        border-bottom: 1px solid #F5F5F5;
     }
 
     & tr {
