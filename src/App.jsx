@@ -2,8 +2,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './components/Layout/Layout'
 import { Home } from './pages/Home/Home'
-import { Room } from './pages/Room'
+import { Rooms } from './pages/Rooms'
 import styled, { ThemeProvider } from 'styled-components'
+import { Bookings } from './pages/Bookings'
 
 function App() {
 
@@ -41,8 +42,8 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />
-              <Route path='/room' element={<Room />} />
-              <Route path='/bookings'/>
+              <Route path='/room' element={<Rooms />} />
+              <Route path='/bookings' element={<Bookings />}/>
               <Route path='/guest'/>
               <Route path='/concierge'/>
             </Route>

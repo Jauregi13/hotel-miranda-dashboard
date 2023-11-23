@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const CardKPIStyled = styled.div`
 
-    width: 15%;
+    width: 17%;
     background-color: #FFFFFF;
     padding: 2em;
     padding-bottom: 1em;

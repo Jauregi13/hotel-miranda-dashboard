@@ -17,14 +17,14 @@ export const Layout = () => {
                 setTitle('Dashboard');
                 break;
             
-            case '/room':
+            case '/rooms':
     
                 setTitle('Room List');
                 break;
             
             case '/bookings':
     
-                setTitle('Bookings');
+                setTitle('Guest List');
                 break;
 
             case '/guest':

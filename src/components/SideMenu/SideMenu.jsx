@@ -31,7 +31,7 @@ export const SideMenu = () => {
                     <li>
                         <NavLinkStyled to={'/room'}>
                             <RoomIcon />
-                            <span>Room</span>
+                            <span>Rooms</span>
                         </NavLinkStyled>
                     </li>
                     <li>
@@ -43,13 +43,13 @@ export const SideMenu = () => {
                     <li>
                         <NavLinkStyled to={'/guest'}>
                             <GuestIcon />
-                            <span>Guest</span>
+                            <span>Contact</span>
                         </NavLinkStyled>
                     </li>
                     <li>
                         <NavLinkStyled to={'/concierge'}>
                             <ConciergeIcon />
-                            <span>Concierge</span>
+                            <span>Users</span>
                         </NavLinkStyled>
                     </li>
                     
