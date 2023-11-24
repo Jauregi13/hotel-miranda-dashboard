@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
+
+
 export const MainStyled = styled.main`
 
     position: absolute;
     top: 14vh;
-    left: 20%;
-    width:80%;
+    width:${(props) => props.openmenu ? '80%' : '100%'};
+    left: ${(props) => props.openmenu ? '20%' : '0'};
     min-height:86vh;
     background-color: #F8F8F8;
 

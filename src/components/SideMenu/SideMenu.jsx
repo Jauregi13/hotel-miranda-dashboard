@@ -4,13 +4,16 @@ import { Styledh1, Styledh2 } from "../headings"
 import { NavLinkStyled } from "./NavLinkStyled"
 import { BookingsIcon, ConciergeIcon, DashboardIcon, GuestIcon, RoomIcon} from "../IconsStyled"
 import { NavStyled } from "./NavStyled"
+import { useMenuOpenContext } from "../MenuOpenContext"
 
 export const SideMenu = () => {
+
+    const {isOpen} = useMenuOpenContext()
 
     return (
 
         <>
-        <SideMenuStyled>
+        <SideMenuStyled openmenu={isOpen}>
             <div className="logo">
                 <img src={logo} alt="Logo" width={47} height={57}/>
                 <div className="logo__text">
