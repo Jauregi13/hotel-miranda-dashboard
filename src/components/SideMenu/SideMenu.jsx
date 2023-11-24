@@ -29,7 +29,7 @@ export const SideMenu = () => {
                         </NavLinkStyled>
                     </li>
                     <li>
-                        <NavLinkStyled to={'/room'}>
+                        <NavLinkStyled to={'/rooms'}>
                             <RoomIcon />
                             <span>Rooms</span>
                         </NavLinkStyled>

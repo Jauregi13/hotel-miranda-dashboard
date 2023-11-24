@@ -69,18 +69,9 @@ export const EmailIcon = styled(MdOutlineMailOutline)`
 
 `
 
-const KPIStyled = `
-
-    background-color: #FFEDEC;
-    padding: 1em;
-    color: #E23428;
-    border-radius: 8px;
-`
-
 export const BedIcon = styled(LiaBedSolid)`
 
     ${iconStyle}
-    ${KPIStyled}
 `
 
 export const CheckIcon = styled(FaRegCheckCircle)`

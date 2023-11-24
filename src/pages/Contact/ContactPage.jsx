@@ -4,7 +4,7 @@ import { ContactStyled } from "./ContactStyled"
 
 
 
-export const Contact = () =>  {
+export const ContactPage = () =>  {
 
 
     return (

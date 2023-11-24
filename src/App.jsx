@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './components/Layout/Layout'
-import { Home } from './pages/Home/Home'
+import { HomePage } from './pages/Home/HomePage'
 import { Rooms } from './pages/Rooms'
 import styled, { ThemeProvider } from 'styled-components'
-import { Bookings } from './pages/Bookings'
-import { Contact } from './pages/Contact/Contact'
+import { BookingsPage } from './pages/BookingsPage'
+import { ContactPage } from './pages/Contact/ContactPage'
 
 function App() {
 
@@ -42,10 +42,10 @@ function App() {
       <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />
-              <Route path='/room' element={<Rooms />} />
-              <Route path='/bookings' element={<Bookings />}/>
-              <Route path='/contact' element={<Contact />}/>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/rooms' element={<Rooms />} />
+              <Route path='/bookings' element={<BookingsPage />}/>
+              <Route path='/contact' element={<ContactPage />}/>
               <Route path='/concierge'/>
             </Route>
           </Routes>

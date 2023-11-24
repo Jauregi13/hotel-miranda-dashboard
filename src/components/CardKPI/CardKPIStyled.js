@@ -9,13 +9,18 @@ export const CardKPIStyled = styled.div`
     padding: 2em;
     padding-bottom: 1em;
     border-radius: 12px;
+    display: flex;
 
-    & .kpi-content {
-        display: flex;
+    & svg {
+        background-color: #FFEDEC;
+        padding: 1em;
+        color: #E23428;
+        border-radius: 8px;
+    }
 
-        &__text {
-            margin-left: 1em;
-        }
+    & .kpi-content-text {
+    
+        margin-left: 1em;
     }
 
 

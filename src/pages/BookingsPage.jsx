@@ -6,7 +6,7 @@ import { TheadStyled } from "../components/Table/TheadStyled"
 
 
 
-export const Bookings = () => {
+export const BookingsPage = () => {
 
 
     return (
