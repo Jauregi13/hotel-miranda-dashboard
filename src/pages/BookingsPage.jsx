@@ -113,6 +113,8 @@ export const BookingsPage = () => {
                             <ButtonStyled status="booked-guest">Booked</ButtonStyled>
                         </td>
                     </tr>
+
+                    
                     
                 </TBodyStyled>
             </TableStyled>

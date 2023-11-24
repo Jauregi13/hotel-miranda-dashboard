@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
+
 export const HeaderStyled = styled.header`
 
     position: fixed;
     top: 0;
+    left: ${(props) => props.openmenu ? '20%': '0%'};
     z-index: 1000;
-    width: 80%;
-    left: 20%;
+    width: ${(props) => props.openmenu ? '80%' : '100%'};
     height: 14vh;
+    background-color: #FFFFFF;
     box-shadow: 0px 3px 10px #00000005;
 
     & .header-content {

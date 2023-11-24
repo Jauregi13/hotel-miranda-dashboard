@@ -1,13 +1,15 @@
-import { Outlet, useLocation } from "react-router-dom"
+import { useLocation, Outlet } from "react-router-dom"
 import { Header } from "../Header/Header"
 import { SideMenu } from "../SideMenu/SideMenu"
-import { MainStyled } from "./LayoutStyled"
 import { useEffect, useState } from "react"
+import { MainStyled } from "../MainStyled"
+import { useMenuOpenContext } from "../MenuOpenContext"
 
 export const Layout = () => {
 
     const location = useLocation();
     const [title,setTitle] = useState('Dashboard');
+    const {isOpen} = useMenuOpenContext()
 
     useEffect(() => {
 
@@ -50,9 +52,10 @@ export const Layout = () => {
         <>
         <Header title={title}/>
         <SideMenu />
-        <MainStyled>
+        <MainStyled openmenu={isOpen}>
             <Outlet />
         </MainStyled>
+        
 
         
         </>

@@ -6,7 +6,7 @@ import { Rooms } from './pages/Rooms'
 import styled, { ThemeProvider } from 'styled-components'
 import { BookingsPage } from './pages/BookingsPage'
 import { ContactPage } from './pages/Contact/ContactPage'
-
+import { MenuOpenProvider } from './components/MenuOpenContext'
 function App() {
 
   const theme = {
@@ -38,20 +38,23 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/rooms' element={<Rooms />} />
-              <Route path='/bookings' element={<BookingsPage />}/>
-              <Route path='/contact' element={<ContactPage />}/>
-              <Route path='/concierge'/>
-            </Route>
-          </Routes>
-        
-      </BrowserRouter>
-    </ThemeProvider>
+    <MenuOpenProvider>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/rooms' element={<Rooms />} />
+                <Route path='/bookings' element={<BookingsPage />}/>
+                <Route path='/contact' element={<ContactPage />}/>
+                <Route path='/concierge'/>
+              </Route>
+            </Routes>
+          
+        </BrowserRouter>
+      </ThemeProvider>
+    </MenuOpenProvider>
+    
       
     </>
   )
