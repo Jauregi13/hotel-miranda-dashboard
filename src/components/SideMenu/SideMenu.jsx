@@ -41,7 +41,7 @@ export const SideMenu = () => {
                         </NavLinkStyled>
                     </li>
                     <li>
-                        <NavLinkStyled to={'/guest'}>
+                        <NavLinkStyled to={'/contact'}>
                             <GuestIcon />
                             <span>Contact</span>
                         </NavLinkStyled>
