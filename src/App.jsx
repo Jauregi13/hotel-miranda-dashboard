@@ -5,6 +5,7 @@ import { Home } from './pages/Home/Home'
 import { Rooms } from './pages/Rooms'
 import styled, { ThemeProvider } from 'styled-components'
 import { Bookings } from './pages/Bookings'
+import { Contact } from './pages/Contact/Contact'
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/room' element={<Rooms />} />
               <Route path='/bookings' element={<Bookings />}/>
-              <Route path='/guest'/>
+              <Route path='/contact' element={<Contact />}/>
               <Route path='/concierge'/>
             </Route>
           </Routes>

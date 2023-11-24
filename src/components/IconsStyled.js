@@ -8,7 +8,8 @@ import { TbLogout } from "react-icons/tb";
 import { GoBell } from "react-icons/go";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { LiaBedSolid } from "react-icons/lia";
-
+import { FaRegCheckCircle } from "react-icons/fa";
+import { ImCancelCircle } from "react-icons/im";
 
 const iconStyle = `
 
@@ -80,6 +81,19 @@ export const BedIcon = styled(LiaBedSolid)`
 
     ${iconStyle}
     ${KPIStyled}
+`
 
+export const CheckIcon = styled(FaRegCheckCircle)`
+
+    width: 24px;
+    height: 24px;
+    color: #5AD07A;
+
+`
+export const CancelIcon = styled(ImCancelCircle)`
+
+    width: 24px;
+    height: 24px;
+    color: #E23428;
 
 `
