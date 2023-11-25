@@ -58,8 +58,12 @@ export const ButtonStyled = styled.button`
                     background-color: #575757;
                     color: #BEBEBE;
                 `
-            default:
-                break;
+            case 'archive':
+                return `
+                    color: #E23428;
+                    font-weight: 600;
+                    background-color: transparent;
+                `
         }
     }
 

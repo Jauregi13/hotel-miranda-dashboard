@@ -17,5 +17,9 @@ export const ContactStyled = styled.div`
         }
     }
 
+    & .contact-table {
+        margin-top: 4em;
+    }
+
 
 `
