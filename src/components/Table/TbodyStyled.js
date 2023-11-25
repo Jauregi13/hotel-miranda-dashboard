@@ -30,6 +30,10 @@ export const TBodyStyled = styled.tbody`
         max-width: 305px;
     }
 
+    & tr td.contact-comment {
+        max-width: 500px;
+    }
+
 
 
 

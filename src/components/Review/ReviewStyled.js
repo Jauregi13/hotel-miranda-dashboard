@@ -11,6 +11,11 @@ export const ReviewStyled = styled.div`
     box-shadow: 0px 4px 4px #00000005;
     padding: 1em;
 
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 16px 30px #00000014;  
+    }
+
     & p {
         width: 90%;
     }
