@@ -10,5 +10,8 @@ export const MainStyled = styled.main`
     left: ${(props) => props.openmenu ? '20%' : '0'};
     min-height:86vh;
     background-color: #F8F8F8;
+    transition: width,left 0.5s ease;
+    margin: 0 auto;
+    
 
 `

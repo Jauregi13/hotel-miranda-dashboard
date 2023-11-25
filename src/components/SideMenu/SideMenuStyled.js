@@ -2,18 +2,19 @@ import styled from "styled-components";
 
 export const SideMenuStyled = styled.aside`
 
-    display: none;
     padding-top: 2em;
     position: fixed;
     top: 0;
-    width: 20%;
+    width: 0%;
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
+    transition: width 0.5s ease;
 
     ${(props) => {
         if(props.openmenu){
             return `
-                display: block;
+                width: 20%;
+                
             `
         }
     }}

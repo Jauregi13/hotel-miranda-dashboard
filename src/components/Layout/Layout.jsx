@@ -29,12 +29,12 @@ export const Layout = () => {
                 setTitle('Guest List');
                 break;
 
-            case '/guest':
+            case '/contact':
 
-                setTitle('Guest List');
+                setTitle('Reviews');
                 break;
             
-            case '/concierge':
+            case '/users':
 
                 setTitle('Concierge List');
                 break;

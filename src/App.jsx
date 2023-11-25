@@ -47,7 +47,7 @@ function App() {
                 <Route path='/rooms' element={<Rooms />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
                 <Route path='/contact' element={<ContactPage />}/>
-                <Route path='/concierge'/>
+                <Route path='/users'/>
               </Route>
             </Routes>
           

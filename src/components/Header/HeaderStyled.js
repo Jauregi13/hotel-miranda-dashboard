@@ -11,6 +11,7 @@ export const HeaderStyled = styled.header`
     height: 14vh;
     background-color: #FFFFFF;
     box-shadow: 0px 3px 10px #00000005;
+    transition: width,left 0.5s ease;
 
     & .header-content {
         height: inherit;

@@ -50,7 +50,7 @@ export const SideMenu = () => {
                         </NavLinkStyled>
                     </li>
                     <li>
-                        <NavLinkStyled to={'/concierge'}>
+                        <NavLinkStyled to={'/users'}>
                             <ConciergeIcon />
                             <span>Users</span>
                         </NavLinkStyled>
