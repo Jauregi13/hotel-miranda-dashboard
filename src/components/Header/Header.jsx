@@ -2,11 +2,13 @@ import { HeaderStyled } from "./HeaderStyled"
 import { Styledh1 } from "../headings"
 import { BellIcon, EmailIcon, LogoutIcon, MenuIcon } from "../IconsStyled"
 import { useMenuOpenContext } from "../MenuOpenContext"
+import { useNavigate } from "react-router-dom"
 
 
 export const Header = (props) => {
 
     const {isOpen,open, close} = useMenuOpenContext()
+    const navigate = useNavigate()
 
     const handleOpenMenu = () => {
         if(isOpen){
@@ -17,6 +19,12 @@ export const Header = (props) => {
         }
         
         
+    }
+
+    const handleLogOut = () => {
+
+        localStorage.removeItem('loginSession')
+        navigate('/login')
     }
 
 
@@ -31,7 +39,7 @@ export const Header = (props) => {
                 <div className="header-content__right-icons">
                     <EmailIcon />
                     <BellIcon />
-                    <LogoutIcon />
+                    <LogoutIcon  onClick={handleLogOut}/>
                     
                 </div>
             </div>
