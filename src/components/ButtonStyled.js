@@ -59,8 +59,15 @@ export const ButtonStyled = styled.button`
                     color: #BEBEBE;
                 `
             case 'archive':
+            case 'inactive':
                 return `
                     color: #E23428;
+                    font-weight: 600;
+                    background-color: transparent;
+                `
+            case 'active':
+                return `
+                    color: #5AD07A;
                     font-weight: 600;
                     background-color: transparent;
                 `
