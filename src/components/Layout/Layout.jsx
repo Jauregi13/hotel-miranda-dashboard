@@ -1,4 +1,4 @@
-import { useLocation, Outlet } from "react-router-dom"
+import { useLocation, Outlet, useNavigate } from "react-router-dom"
 import { Header } from "../Header/Header"
 import { SideMenu } from "../SideMenu/SideMenu"
 import { useEffect, useState } from "react"
@@ -8,42 +8,53 @@ import { useMenuOpenContext } from "../MenuOpenContext"
 export const Layout = () => {
 
     const location = useLocation();
+    const navigate = useNavigate();
     const [title,setTitle] = useState('Dashboard');
-    const {isOpen} = useMenuOpenContext()
+    const {isOpen} = useMenuOpenContext();
+    const [user,setUser] = useState(localStorage.getItem('loginSession'));
 
     useEffect(() => {
 
-        switch (location.pathname) {
-            case '/':
+        if(user != null){
+
+            switch (location.pathname) {
+                case '/':
+                    
+                    setTitle('Dashboard');
+                    break;
                 
-                setTitle('Dashboard');
-                break;
-            
-            case '/rooms':
+                case '/rooms':
+        
+                    setTitle('Room List');
+                    break;
+                
+                case '/bookings':
+        
+                    setTitle('Guest List');
+                    break;
     
-                setTitle('Room List');
-                break;
-            
-            case '/bookings':
+                case '/contact':
     
-                setTitle('Guest List');
-                break;
-
-            case '/contact':
-
-                setTitle('Reviews');
-                break;
-            
-            case '/users':
-
-                setTitle('Concierge List');
-                break;
-            default:
-                break;
+                    setTitle('Reviews');
+                    break;
+                
+                case '/users':
+    
+                    setTitle('Concierge List');
+                    break;
+                default:
+                    break;
+            }
         }
 
+        else {
+            navigate('/login');
+        }
 
-    },[location.pathname])
+        
+
+    },[location.pathname,user])
+
 
     
 
