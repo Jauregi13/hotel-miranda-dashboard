@@ -8,6 +8,7 @@ import { BookingsPage } from './pages/BookingsPage'
 import { ContactPage } from './pages/Contact/ContactPage'
 import { MenuOpenProvider } from './components/MenuOpenContext'
 import { Users } from './pages/Users/Users'
+import { LoginPage } from './pages/Login/LoginPage'
 function App() {
 
   const theme = {
@@ -43,6 +44,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
             <Routes>
+              <Route path='/login' element={<LoginPage />}/>
               <Route element={<Layout />}>
                 <Route path='/' element={<HomePage />} />
                 <Route path='/rooms' element={<Rooms />} />

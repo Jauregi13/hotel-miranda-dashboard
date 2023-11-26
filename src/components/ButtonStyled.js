@@ -70,6 +70,12 @@ export const ButtonStyled = styled.button`
                     color: #5AD07A;
                     font-weight: 600;
                     background-color: transparent;
+                  `
+            case 'login':
+                return `
+                    color: #FFFFFF;
+                    font-weight: 600;
+                    background-color: #135846;
                 `
         }
     }
