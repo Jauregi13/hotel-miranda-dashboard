@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import { BookingsPage } from './pages/BookingsPage'
 import { ContactPage } from './pages/Contact/ContactPage'
 import { MenuOpenProvider } from './components/MenuOpenContext'
+import { Users } from './pages/Users/Users'
 function App() {
 
   const theme = {
@@ -47,7 +48,7 @@ function App() {
                 <Route path='/rooms' element={<Rooms />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
                 <Route path='/contact' element={<ContactPage />}/>
-                <Route path='/users'/>
+                <Route path='/users' element={<Users />}/>
               </Route>
             </Routes>
           
