@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 
 
-export const UsersStyled = styled.div`
+export const UsersPageStyled = styled.div`
 
-    padding-left: 2em;
-    padding-top:2em;
+    width: 90%;
+    margin: 0 auto;
 
     & .tabla-users {
 

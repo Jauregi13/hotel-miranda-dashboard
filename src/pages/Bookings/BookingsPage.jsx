@@ -1,7 +1,12 @@
-import { ButtonStyled } from "../components/ButtonStyled"
-import { TableStyled } from "../components/Table/TableStyled"
-import { TBodyStyled } from "../components/Table/TbodyStyled"
-import { TheadStyled } from "../components/Table/TheadStyled"
+import { ButtonStyled } from "../../components/ButtonStyled"
+import { SelectStyled } from "../../components/SelectStyled"
+import { TableStyled } from "../../components/Table/TableStyled"
+import { TBodyStyled } from "../../components/Table/TbodyStyled"
+import { TheadStyled } from "../../components/Table/TheadStyled"
+import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
+import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
+import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
+import { BookingsPageStyled } from "./BookingsPageStyled"
 
 
 
@@ -12,6 +17,22 @@ export const BookingsPage = () => {
     return (
 
         <>
+        <BookingsPageStyled>
+
+            <TabsWithOptionsStyled>
+                <TabsStyled>
+                    <li>All Bookings</li>
+                    <li>Check In</li>
+                    <li>Check Out</li>
+                    <li>In Progress</li>
+                </TabsStyled>
+                <OptionsStyled>
+                    <SelectStyled>
+                        <option value='newest'>Newest</option>
+                    </SelectStyled>
+                </OptionsStyled>
+            </TabsWithOptionsStyled>
+
             <TableStyled>
                 <TheadStyled>
                     <tr>
@@ -118,6 +139,8 @@ export const BookingsPage = () => {
                     
                 </TBodyStyled>
             </TableStyled>
+        </BookingsPageStyled>
+            
         
         </>
 

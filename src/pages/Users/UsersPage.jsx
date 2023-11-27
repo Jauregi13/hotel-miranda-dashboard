@@ -4,17 +4,36 @@ import { ImageWithName } from "../../components/ImageWithName/ImageWithName"
 import { TableStyled } from "../../components/Table/TableStyled"
 import { TBodyStyled } from "../../components/Table/TbodyStyled"
 import { TheadStyled } from "../../components/Table/TheadStyled"
-import { UsersStyled } from "./UsersStyled"
+import { UsersPageStyled } from "./UsersPageStyled"
+import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
+import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
+import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
+import { SelectStyled } from "../../components/SelectStyled"
 
-
-
-
-export const Users = () => {
-
+export const UsersPage = () => {
 
     return (
 
-        <UsersStyled>
+        <UsersPageStyled>
+
+            <section className="tabs-users">
+
+                <TabsWithOptionsStyled>
+                    <TabsStyled>     
+                        <li>All Employee</li>
+                        <li>Active Employee</li>
+                        <li>Inactive Employee</li>
+                    </TabsStyled>
+
+                    <OptionsStyled>
+                        <ButtonStyled status="create">+ New Employee</ButtonStyled>
+                        <SelectStyled>
+                            <option value='Newest'>Newest</option>
+                        </SelectStyled>
+                    </OptionsStyled>
+                </TabsWithOptionsStyled>
+                
+            </section>
 
             <section className="tabla-users">
 
@@ -68,7 +87,7 @@ export const Users = () => {
             </section>
 
 
-        </UsersStyled>
+        </UsersPageStyled>
         
         
         

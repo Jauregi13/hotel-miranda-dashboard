@@ -2,13 +2,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './components/Layout/Layout'
 import { HomePage } from './pages/Home/HomePage'
-import { Rooms } from './pages/Rooms'
-import styled, { ThemeProvider } from 'styled-components'
-import { BookingsPage } from './pages/BookingsPage'
+import { RoomsPage } from './pages/Rooms/RoomsPage'
+import { ThemeProvider } from 'styled-components'
+import { BookingsPage } from './pages/Bookings/BookingsPage'
 import { ContactPage } from './pages/Contact/ContactPage'
 import { MenuOpenProvider } from './components/MenuOpenContext'
-import { Users } from './pages/Users/Users'
+import { UsersPage } from './pages/Users/UsersPage'
 import { LoginPage } from './pages/Login/LoginPage'
+
 function App() {
 
   const theme = {
@@ -47,10 +48,10 @@ function App() {
               <Route path='/login' element={<LoginPage />}/>
               <Route element={<Layout />}>
                 <Route path='/' element={<HomePage />} />
-                <Route path='/rooms' element={<Rooms />} />
+                <Route path='/rooms' element={<RoomsPage />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
                 <Route path='/contact' element={<ContactPage />}/>
-                <Route path='/users' element={<Users />}/>
+                <Route path='/users' element={<UsersPage />}/>
               </Route>
             </Routes>
           

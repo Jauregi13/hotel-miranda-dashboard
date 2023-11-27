@@ -72,6 +72,7 @@ export const ButtonStyled = styled.button`
                     background-color: transparent;
                   `
             case 'login':
+            case 'create':
                 return `
                     color: #FFFFFF;
                     font-weight: 600;
