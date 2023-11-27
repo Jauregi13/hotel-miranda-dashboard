@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 export const ContactStyled = styled.div`
 
-    padding-left: 2em;
-    padding-top:2em;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2em;
 
     & .reviews-content {
         margin-right: 1em;
@@ -17,8 +18,8 @@ export const ContactStyled = styled.div`
         }
     }
 
-    & .contact-table {
-        margin-top: 4em;
+    & .contact-tabs {
+        margin-top: 3em;
     }
 
 

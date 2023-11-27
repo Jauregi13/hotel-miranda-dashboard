@@ -4,7 +4,10 @@ import { TableStyled } from '../../components/Table/TableStyled'
 import { TheadStyled } from '../../components/Table/TheadStyled'
 import { TBodyStyled } from "../../components/Table/TbodyStyled"
 import { ButtonStyled } from "../../components/ButtonStyled"
-
+import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
+import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
+import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
+import { SelectStyled } from "../../components/SelectStyled"
 
 
 export const ContactPage = () =>  {
@@ -19,6 +22,23 @@ export const ContactPage = () =>  {
                 <Review />
                 <Review />
             </section>
+
+            <section className="contact-tabs">
+
+                <TabsWithOptionsStyled>
+                    <TabsStyled>
+                        <li>All Customer Reviews</li>
+                        <li>Archived</li>
+                    </TabsStyled>
+                    <OptionsStyled>
+                        <SelectStyled>
+                            <option value='newest'>Newest</option>
+                        </SelectStyled>
+                    </OptionsStyled>
+                </TabsWithOptionsStyled>
+
+            </section>
+
             <section className="contact-table">
                 <TableStyled>
                     <TheadStyled>
