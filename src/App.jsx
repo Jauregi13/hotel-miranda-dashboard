@@ -9,6 +9,8 @@ import { ContactPage } from './pages/Contact/ContactPage'
 import { MenuOpenProvider } from './components/MenuOpenContext'
 import { UsersPage } from './pages/Users/UsersPage'
 import { LoginPage } from './pages/Login/LoginPage'
+import { Provider } from 'react-redux'
+import { store } from './app/store'
 
 function App() {
 

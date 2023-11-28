@@ -24,12 +24,12 @@ export const ButtonStyled = styled.button`
     ${(props) => {
 
         switch (props.status) {
-            case 'available':
+            case 'Available':
                 
                 return `
                     background-color: #5AD07A;
                 `
-            case 'booked-rooms':
+            case 'Booked':
                 
                 return `
                     background-color: #E23428;
