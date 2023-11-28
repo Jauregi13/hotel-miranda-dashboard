@@ -7,7 +7,8 @@
     "price": 120.50,
     "offer": 10.5,
     "cancellation": "Política de cancelación flexible para garantizar tu tranquilidad durante tu estancia.",
-    "amenities": ["AC", "Shower", "Wifi"]
+    "amenities": ["AC", "Shower", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1002",
@@ -17,7 +18,8 @@
     "price": 180.00,
     "offer": 0,
     "cancellation": "Cancelación gratuita hasta 24 horas antes del check-in.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1003",
@@ -27,7 +29,8 @@
     "price": 220.75,
     "offer": 15,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1004",
@@ -37,7 +40,8 @@
     "price": 350.00,
     "offer": 25.5,
     "cancellation": "Política de cancelación flexible. Cancela hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1005",
@@ -47,7 +51,8 @@
     "price": 110.00,
     "offer": 5.0,
     "cancellation": "Cancelación gratuita hasta el día de la llegada.",
-    "amenities": ["Shower", "Wifi"]
+    "amenities": ["Shower", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1006",
@@ -57,7 +62,8 @@
     "price": 190.50,
     "offer": 12.0,
     "cancellation": "Política de cancelación flexible para tu comodidad.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1007",
@@ -67,7 +73,8 @@
     "price": 240.00,
     "offer": 20.0,
     "cancellation": "Cancelación gratuita hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1008",
@@ -77,7 +84,8 @@
     "price": 400.00,
     "offer": 30.0,
     "cancellation": "Política de cancelación flexible para tu comodidad.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1009",
@@ -87,7 +95,8 @@
     "price": 130.25,
     "offer": 8.5,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["Shower", "Wifi"]
+    "amenities": ["Shower", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1010",
@@ -97,7 +106,8 @@
     "price": 200.00,
     "offer": 0,
     "cancellation": "Cancelación gratuita hasta 24 horas antes del check-in.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1011",
@@ -107,7 +117,8 @@
     "price": 230.50,
     "offer": 15,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1012",
@@ -117,7 +128,8 @@
     "price": 380.00,
     "offer": 25.5,
     "cancellation": "Política de cancelación flexible. Cancela hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1013",
@@ -127,7 +139,8 @@
     "price": 115.00,
     "offer": 5.0,
     "cancellation": "Cancelación gratuita hasta el día de la llegada.",
-    "amenities": ["Shower", "Wifi"]
+    "amenities": ["Shower", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1014",
@@ -137,7 +150,8 @@
     "price": 195.50,
     "offer": 12.0,
     "cancellation": "Política de cancelación flexible para tu comodidad.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1015",
@@ -147,7 +161,8 @@
     "price": 250.00,
     "offer": 20.0,
     "cancellation": "Cancelación gratuita hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1016",
@@ -157,7 +172,8 @@
     "price": 420.00,
     "offer": 30.0,
     "cancellation": "Política de cancelación flexible para tu comodidad.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1017",
@@ -167,7 +183,8 @@
     "price": 135.25,
     "offer": 8.5,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["Shower", "Wifi"]
+    "amenities": ["Shower", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1018",
@@ -177,7 +194,8 @@
     "price": 210.00,
     "offer": 0,
     "cancellation": "Cancelación gratuita hasta 24 horas antes del check-in.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1019",
@@ -187,7 +205,8 @@
     "price": 235.50,
     "offer": 15,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1020",
@@ -197,7 +216,8 @@
     "price": 370.00,
     "offer": 25.5,
     "cancellation": "Política de cancelación flexible. Cancela hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1021",
@@ -207,7 +227,8 @@
     "price": 118.00,
     "offer": 5.0,
     "cancellation": "Cancelación gratuita hasta el día de la llegada.",
-    "amenities": ["Shower", "Wifi"]
+    "amenities": ["Shower", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1022",
@@ -217,7 +238,8 @@
     "price": 198.50,
     "offer": 12.0,
     "cancellation": "Política de cancelación flexible para tu comodidad.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1023",
@@ -227,7 +249,8 @@
     "price": 245.00,
     "offer": 20.0,
     "cancellation": "Cancelación gratuita hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1024",
@@ -237,7 +260,8 @@
     "price": 410.00,
     "offer": 30.0,
     "cancellation": "Política de cancelación flexible para tu comodidad.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1025",
@@ -247,7 +271,8 @@
     "price": 139.25,
     "offer": 8.5,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["Shower", "Wifi"]
+    "amenities": ["Shower", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1026",
@@ -257,7 +282,8 @@
     "price": 215.00,
     "offer": 0,
     "cancellation": "Cancelación gratuita hasta 24 horas antes del check-in.",
-    "amenities": ["AC", "Double Bed", "Wifi"]
+    "amenities": ["AC", "Double Bed", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1027",
@@ -267,7 +293,8 @@
     "price": 239.50,
     "offer": 15,
     "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
-    "amenities": ["AC", "Shower", "Towel", "Wifi"]
+    "amenities": ["AC", "Shower", "Towel", "Wifi"],
+    "status": "Booked"
     },
     {
     "id": "#1028",
@@ -277,7 +304,8 @@
     "price": 365.00,
     "offer": 25.5,
     "cancellation": "Política de cancelación flexible. Cancela hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1029",
@@ -287,7 +315,8 @@
     "price": 400.00,
     "offer": 20,
     "cancellation": "Política de cancelación flexible. Cancela hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"]
+    "amenities": ["AC", "Bathup", "Coffee Set", "Wifi"],
+    "status": "Available"
     },
     {
     "id": "#1030",
@@ -297,7 +326,8 @@
     "price": 130.00,
     "offer": 15.5,
     "cancellation": "Cancelación gratuita hasta 48 horas antes del check-in.",
-    "amenities": ["AC", "Shower", "Wifi"]
+    "amenities": ["AC", "Shower", "Wifi"],
+    "status": "Available"
     }
       
 ]

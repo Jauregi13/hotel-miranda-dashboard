@@ -9,8 +9,50 @@ import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWith
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { SelectStyled } from "../../components/SelectStyled"
+import { useDispatch, useSelector } from "react-redux"
+import { getEmployeesData, getEmployeesError, getEmployeesStatus } from "../../features/employees/employeesSlice"
+import { useEffect, useState } from "react"
+import { getEmployeesThunk } from "../../features/employees/employeesThunk"
 
 export const UsersPage = () => {
+
+    const dispatch = useDispatch();
+    const employees = useSelector(getEmployeesData);
+    const employeesStatus = useSelector(getEmployeesStatus);
+    const employeesError = useSelector(getEmployeesError);
+    const [loading,setLoading] = useState(false);
+    const [employeesList,setEmployeesList] = useState([]);
+
+    useEffect(() => {
+
+        switch (employeesStatus) {
+            case 'idle':
+                console.log('idle');
+                dispatch(getEmployeesThunk());
+                
+                break;
+            
+            case 'pending':
+                console.log('pending');
+                setLoading(true);
+
+                break;
+
+            case 'rejected':
+
+                setLoading(false);
+
+
+            case 'fulfilled':
+
+                setEmployeesList(employees);
+                setLoading(false);
+
+            default:
+                break;
+        }
+
+    },[dispatch,employeesStatus,employees])
 
     return (
 
@@ -36,53 +78,54 @@ export const UsersPage = () => {
             </section>
 
             <section className="tabla-users">
+                {
+                    loading ? <p>Loading...</p> :
 
-                <TableStyled>
-                    <TheadStyled>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Contact</th>
-                            <th>Status</th>
-                        </tr>
-                    </TheadStyled>
-                    <TBodyStyled>
-                        <tr>
-                            <td>
-                                <ImageWithName src="/src/assets/founder.png" type="user" name="James Sitepu" id="#12341225" email="james@gmail.com"></ImageWithName>
-                            </td>
-                            <td>
-                                <p>Answering guest inquiries, directing phone calls, coordinating travel plans, and more.</p>
-                            </td>
-                            <td>
-                                <div className="tabla-users__contact-info">
-                                <PhoneIcon className="tabla-users__contact-info__phone-icon"/> 
-                                <p className="tabla-users__contact-info__phone-number">012 334 55512</p>
-                                </div>
-                            </td>
-                            <td>
-                                <ButtonStyled status="active">ACTIVE</ButtonStyled>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ImageWithName src="/src/assets/founder.png" type="user" name="James Sitepu" id="#12341225" email="james@gmail.com"></ImageWithName>
-                            </td>
-                            <td>
-                                <p>Answering guest inquiries, directing phone calls, coordinating travel plans, and more.</p>
-                            </td>
-                            <td>
-                                <div className="tabla-users__contact-info">
-                                <PhoneIcon className="tabla-users__contact-info__phone-icon"/> 
-                                <p className="tabla-users__contact-info__phone-number">012 334 55512</p>
-                                </div>
-                            </td>
-                            <td>
-                                <ButtonStyled status="inactive">INACTIVE</ButtonStyled>
-                            </td>
-                        </tr>
-                    </TBodyStyled>
-                </TableStyled>
+                    <TableStyled>
+                        <TheadStyled>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Contact</th>
+                                <th>Status</th>
+                            </tr>
+                        </TheadStyled>
+                        <TBodyStyled>
+
+                            {
+                                employeesList.map((employee) => (
+
+                                    <tr key={employee.id}>
+                                        <td>
+                                            <ImageWithName src="/src/assets/founder.png" type="user" name={employee.name} id={employee.id} email={employee.email}></ImageWithName>
+                                        </td>
+                                        <td>
+                                            <p>{employee.description}</p>
+                                        </td>
+                                        <td>
+                                            <div className="tabla-users__contact-info">
+                                            <PhoneIcon className="tabla-users__contact-info__phone-icon"/> 
+                                            <p className="tabla-users__contact-info__phone-number">{employee.contact}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {
+                                                employee.status == 'ACTIVE' ? <ButtonStyled status="active">ACTIVE</ButtonStyled> 
+                                                
+                                                : <ButtonStyled status="inactive">INACTIVE</ButtonStyled> 
+                                            }
+                                            
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            
+                            
+                        </TBodyStyled>
+                    </TableStyled>
+
+                }
+                
 
             </section>
 

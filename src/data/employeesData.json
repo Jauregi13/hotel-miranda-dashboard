@@ -15,7 +15,7 @@
     "start_date": "2023-03-25",
     "description": "Analista de Datos",
     "contact": "444-555-666",
-    "status": "ACTIVE"
+    "status": "INACTIVE"
     },
     {
     "name": "Marina Díaz",
@@ -24,7 +24,7 @@
     "start_date": "2023-02-18",
     "description": "Gerente de Proyectos",
     "contact": "777-888-999",
-    "status": "ACTIVE"
+    "status": "INACTIVE"
     },
     {
     "name": "Javier Ruiz",
@@ -51,7 +51,7 @@
     "start_date": "2023-06-20",
     "description": "Analista Financiero",
     "contact": "888-999-000",
-    "status": "ACTIVE"
+    "status": "INACTIVE"
     },
     {
     "name": "Lucía Gómez",
@@ -78,7 +78,7 @@
     "start_date": "2023-07-14",
     "description": "Especialista en Logística",
     "contact": "987-654-321",
-    "status": "ACTIVE"
+    "status": "INACTIVE"
     },
     {
     "name": "Alejandro Ramírez",
@@ -114,7 +114,7 @@
     "start_date": "2023-11-30",
     "description": "Analista de Datos",
     "contact": "333-777-111",
-    "status": "ACTIVE"
+    "status": "INACTIVE"
     },
     {
     "name": "Sebastián Morales",

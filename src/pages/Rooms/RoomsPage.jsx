@@ -8,9 +8,48 @@ import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWith
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { SelectStyled } from "../../components/SelectStyled"
 import { RoomsPageStyled } from "./RoomsPageStyled"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getRoomsData, getRoomsStatus } from "../../features/rooms/roomsSlice"
+import { getRoomsThunk } from "../../features/rooms/roomsThunk"
 
 
 export const RoomsPage = () => {
+
+    const dispatch = useDispatch()
+    const roomsStatus = useSelector(getRoomsStatus)
+    const rooms = useSelector(getRoomsData)
+    const [roomList,setRoomList] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+
+        switch (roomsStatus) {
+            case 'idle':
+                dispatch(getRoomsThunk())
+                
+                break;
+            case 'pending':
+                setLoading(true)
+                
+                break;
+        
+            case 'rejected':
+                setLoading(false)
+                break;
+            
+            case 'fulfilled':
+
+                setRoomList(rooms)
+                setLoading(false)
+
+                break;
+
+        }
+
+
+
+    },[dispatch,roomsStatus,rooms])
 
     return (
 
@@ -31,6 +70,8 @@ export const RoomsPage = () => {
                 </OptionsStyled>
             </TabsWithOptionsStyled>
 
+            { loading ? <p>Loading...</p> :
+
             <TableStyled>
                 <TheadStyled>
                     <tr>
@@ -44,24 +85,32 @@ export const RoomsPage = () => {
                     
                 </TheadStyled>
                 <TBodyStyled>
-                    <tr>
-                        <td><RoomName /></td>
-                        <td><p>Double Bed</p></td>
-                        <td><p>AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi</p></td>
-                        <td><p>$145/night</p></td>
-                        <td><p>$120/night</p></td>
-                        <td><ButtonStyled status="available">Available</ButtonStyled></td>
-                    </tr>
-                    <tr>
-                        <td><RoomName /></td>
-                        <td><p>Double Bed</p></td>
-                        <td><p>AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi</p></td>
-                        <td><p>$145/night</p></td>
-                        <td><p>$120/night</p></td>
-                        <td><ButtonStyled status="booked-rooms">Booked</ButtonStyled></td>                    
-                    </tr>
+                    
+                    {
+                        roomList.map((room) => (
+
+                            <tr key={room.id}>
+                                <td><RoomName id={room.id} number={room.room_number}/></td>
+                                <td><p>{room.room_type}</p></td>
+                                <td><p>
+                                        {room.amenities.join(', ')}
+                                    </p>
+                                </td>
+                                <td><p>${room.price}/night</p></td>
+                                <td><p>${(room.price - (room.price * room.offer/100)).toFixed(2)}/night</p></td>
+                                <td><ButtonStyled status={room.status}>{room.status}</ButtonStyled></td>
+                            </tr>
+                        ))
+                        
+                    }
+                        
+                        
+                            
+                        
+                    
                 </TBodyStyled>
             </TableStyled>
+            }
         </RoomsPageStyled>
         
         
