@@ -10,7 +10,7 @@ import { SelectStyled } from "../../components/SelectStyled"
 import { RoomsPageStyled } from "./RoomsPageStyled"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getRoomsData, getRoomsStatus } from "../../features/rooms/roomsSlice"
+import { getAllRoomsData, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { getRoomsThunk } from "../../features/rooms/roomsThunk"
 
 
@@ -18,9 +18,10 @@ export const RoomsPage = () => {
 
     const dispatch = useDispatch()
     const roomsStatus = useSelector(getRoomsStatus)
-    const rooms = useSelector(getRoomsData)
+    const roomsAll = useSelector(getAllRoomsData)
     const [roomList,setRoomList] = useState([])
     const [loading, setLoading] = useState(false)
+    const [orderValue,setOrderValue] = useState('id')
 
     useEffect(() => {
 
@@ -40,7 +41,7 @@ export const RoomsPage = () => {
             
             case 'fulfilled':
 
-                setRoomList(rooms)
+                setRoomList(roomsAll)
                 setLoading(false)
 
                 break;
@@ -49,7 +50,99 @@ export const RoomsPage = () => {
 
 
 
-    },[dispatch,roomsStatus,rooms])
+    },[dispatch,roomsStatus,roomsAll])
+
+    const handleFilter = (type) => {
+
+        let roomsFilter;
+        setOrderValue('id');
+
+        if(type === 'all'){
+            roomsFilter = roomsAll;
+        }
+        else if(type === 'available'){
+            roomsFilter = roomsAll.filter((room) => room.status === 'Available');
+        }
+        else if(type === 'booked'){
+            roomsFilter = roomsAll.filter((room) => room.status === 'Booked');
+        }
+
+        setRoomList(roomsFilter);
+
+        
+    }
+
+    const handleOrderRoom = (event) => {
+
+        const orderList = [...roomList]
+        setOrderValue(event.target.value)
+
+        switch (event.target.value) {
+
+            case 'id':
+
+                orderList.sort((a,b) => {
+
+                    let firstId = parseInt(a.id.substring(1,a.id.length));
+                    let secondId = parseInt(b.id.substring(1,b.id.length));
+
+                   return firstId-secondId;
+                })
+
+                break;
+            
+            case 'available':
+
+                orderList.sort((a,b) => {
+
+                    if(a.status === 'Available' && b.status !== 'Available'){
+                        return -1;
+                    }
+                    else if(b.status === 'Available' && a.status !== 'Available'){
+                        return 1;
+                    }
+                    return 0;
+                })
+                
+                break;
+            
+            case 'booked':
+
+                orderList.sort((a,b) => {
+
+                    if(a.status === 'Booked' && b.status !== 'Booked'){
+                        return -1;
+                    }
+                    else if(b.status === 'Booked' && a.status !== 'Booked'){
+                        return 1;
+                    }
+                    return 0;
+                })
+
+                break;
+
+            case 'lower':
+
+                orderList.sort((a,b) => {
+
+                    return a.price - b.price;
+                })
+
+                break;
+
+            case 'higher':
+
+                orderList.sort((a,b) => {
+
+                    return b.price - a.price;
+                })
+        }
+
+        setRoomList(orderList);
+
+        
+
+    }
 
     return (
 
@@ -58,14 +151,18 @@ export const RoomsPage = () => {
 
             <TabsWithOptionsStyled>
                 <TabsStyled>
-                    <li>All Rooms</li>
-                    <li>Available Rooms</li>
-                    <li>Booked Rooms</li>
+                    <li onClick={() => handleFilter('all')}>All Rooms</li>
+                    <li onClick={() => handleFilter('available')}>Available Rooms</li>
+                    <li onClick={() => handleFilter('booked')}>Booked Rooms</li>
                 </TabsStyled>
                 <OptionsStyled>
                     <ButtonStyled status="create">+ New Room</ButtonStyled>
-                    <SelectStyled>
-                        <option value='newest'>Newest</option>
+                    <SelectStyled onChange={handleOrderRoom} value={orderValue}>
+                        <option value='id'>Id of Room</option>
+                        <option value="available">Status Available</option>
+                        <option value="booked">Status Booked</option>
+                        <option value="lower">Lower Price</option>
+                        <option value="higher">Higher Price</option>
                     </SelectStyled>
                 </OptionsStyled>
             </TabsWithOptionsStyled>
@@ -104,10 +201,6 @@ export const RoomsPage = () => {
                         
                     }
                         
-                        
-                            
-                        
-                    
                 </TBodyStyled>
             </TableStyled>
             }

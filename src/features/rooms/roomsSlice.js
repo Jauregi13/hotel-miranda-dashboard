@@ -26,6 +26,6 @@ export const RoomsSlice = createSlice({
     }
 })
 
-export const getRoomsData = (state) => state.rooms.data
+export const getAllRoomsData = (state) => state.rooms.data
 export const getRoomsStatus = (state) => state.rooms.status
 export const getRoomsError = (state) => state.rooms.error
