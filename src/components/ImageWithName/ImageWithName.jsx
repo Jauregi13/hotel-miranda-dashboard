@@ -15,7 +15,12 @@ export const ImageWithName = (props) => {
                 {
                     props.type === 'user' && 
                     
-                    <p>{props.email}</p>  
+                    <>
+                    <p>{props.email}</p> 
+                    <p>Joined on {props.start_date}</p> 
+                    </>
+                    
+                    
                 }
                 
             </div>

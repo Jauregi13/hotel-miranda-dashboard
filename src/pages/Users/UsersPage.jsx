@@ -22,6 +22,8 @@ export const UsersPage = () => {
     const employeesError = useSelector(getEmployeesError);
     const [loading,setLoading] = useState(false);
     const [employeesList,setEmployeesList] = useState([]);
+    const [orderValue,setOrderValue] = useState('id')
+
 
     useEffect(() => {
 
@@ -54,6 +56,60 @@ export const UsersPage = () => {
 
     },[dispatch,employeesStatus,employees])
 
+    const handleFilter = (type) => {
+
+        let employeesFilter;
+        setOrderValue('id');
+
+        if(type === 'all'){
+            employeesFilter = employees;
+        }
+        else if(type === 'active'){
+            employeesFilter = employees.filter((room) => room.status === 'ACTIVE');
+        }
+        else if(type === 'inactive'){
+            employeesFilter = employees.filter((room) => room.status === 'INACTIVE');
+        }
+
+        setEmployeesList(employeesFilter);
+
+        
+    }
+
+    const handleOrderEmployee = (event) => {
+
+        const orderList = [...employeesList]
+        setOrderValue(event.target.value)
+
+        if(event.target.value === 'start_date'){
+
+            orderList.sort((a,b) => {
+                let date1 = new Date(a.start_date)
+                let date2 = new Date(b.start_date)
+            })
+        }
+        else if(event.target.value === 'name'){
+
+            orderList.sort((a,b) => {
+
+                if(a.name > b.name){
+                    return 1
+                }
+
+                else if(a.name < b.name){
+                    return -1
+                }
+
+                return 0;
+            })
+        }
+
+        setEmployeesList(orderList);
+
+        
+
+    }
+
     return (
 
         <UsersPageStyled>
@@ -62,15 +118,16 @@ export const UsersPage = () => {
 
                 <TabsWithOptionsStyled>
                     <TabsStyled>     
-                        <li>All Employee</li>
-                        <li>Active Employee</li>
-                        <li>Inactive Employee</li>
+                        <li onClick={() => handleFilter('all')}>All Employee</li>
+                        <li onClick={() => handleFilter('active')}>Active Employee</li>
+                        <li onClick={() => handleFilter('inactive')}>Inactive Employee</li>
                     </TabsStyled>
 
                     <OptionsStyled>
                         <ButtonStyled status="create">+ New Employee</ButtonStyled>
-                        <SelectStyled>
-                            <option value='Newest'>Newest</option>
+                        <SelectStyled value={orderValue} onChange={handleOrderEmployee}>
+                            <option value='start_date'>Start Date</option>
+                            <option value="name">First Name</option>
                         </SelectStyled>
                     </OptionsStyled>
                 </TabsWithOptionsStyled>
@@ -97,7 +154,7 @@ export const UsersPage = () => {
 
                                     <tr key={employee.id}>
                                         <td>
-                                            <ImageWithName src="/src/assets/founder.png" type="user" name={employee.name} id={employee.id} email={employee.email}></ImageWithName>
+                                            <ImageWithName src="/src/assets/founder.png" type="user" name={employee.name} id={employee.id} email={employee.email} start_date={employee.start_date} />
                                         </td>
                                         <td>
                                             <p>{employee.description}</p>
