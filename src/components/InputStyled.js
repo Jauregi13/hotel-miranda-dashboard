@@ -19,7 +19,7 @@ export const InputStyled = styled.div`
 
     & input {
         font-size: 1em;
-        width: 98%%;
+        width: 98%;
         border: none;
         border-bottom: 2px solid #135846;
     }
