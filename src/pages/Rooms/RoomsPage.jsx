@@ -74,6 +74,8 @@ export const RoomsPage = () => {
 
     const handleOrderRoom = (event) => {
 
+        console.log('ordenado');
+
         const orderList = [...roomList]
         setOrderValue(event.target.value)
 

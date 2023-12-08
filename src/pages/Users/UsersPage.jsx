@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getEmployeesData, getEmployeesError, getEmployeesStatus } from "../../features/employees/employeesSlice"
 import { useEffect, useState } from "react"
 import { getEmployeesThunk } from "../../features/employees/employeesThunk"
+import { useRef } from "react"
 
 export const UsersPage = () => {
 
@@ -22,7 +23,8 @@ export const UsersPage = () => {
     const employeesError = useSelector(getEmployeesError);
     const [loading,setLoading] = useState(false);
     const [employeesList,setEmployeesList] = useState([]);
-    const [orderValue,setOrderValue] = useState('id')
+    const [orderValue,setOrderValue] = useState('start_date')
+    const selectRef = useRef()
 
 
     useEffect(() => {
@@ -48,6 +50,7 @@ export const UsersPage = () => {
             case 'fulfilled':
 
                 setEmployeesList(employees);
+                handleOrderEmployee(orderValue,employees)
                 setLoading(false);
 
             default:
@@ -59,7 +62,6 @@ export const UsersPage = () => {
     const handleFilter = (type) => {
 
         let employeesFilter;
-        setOrderValue('id');
 
         if(type === 'all'){
             employeesFilter = employees;
@@ -72,23 +74,41 @@ export const UsersPage = () => {
         }
 
         setEmployeesList(employeesFilter);
-
+        handleOrderEmployee('start_date',employeesFilter)
+        
         
     }
 
-    const handleOrderEmployee = (event) => {
+    const handleChangeOrderEmployee = (event) => {
+
+        handleOrderEmployee(event.target.value,employeesList)
+
+    }
+
+    const handleOrderEmployee = (orderValue, employeesList) => {
 
         const orderList = [...employeesList]
-        setOrderValue(event.target.value)
+        setOrderValue(orderValue)
 
-        if(event.target.value === 'start_date'){
+        if(orderValue === 'start_date'){
 
             orderList.sort((a,b) => {
+
                 let date1 = new Date(a.start_date)
                 let date2 = new Date(b.start_date)
+
+                if(date2 > date1){
+                    return 1
+                }
+                else if(date2 < date1){
+                    return -1
+                }
+
+                return 0
+
             })
         }
-        else if(event.target.value === 'name'){
+        else if(orderValue === 'name'){
 
             orderList.sort((a,b) => {
 
@@ -100,15 +120,15 @@ export const UsersPage = () => {
                     return -1
                 }
 
-                return 0;
+                return 0
             })
         }
 
         setEmployeesList(orderList);
 
-        
-
     }
+
+    
 
     return (
 
@@ -125,7 +145,7 @@ export const UsersPage = () => {
 
                     <OptionsStyled>
                         <ButtonStyled status="create">+ New Employee</ButtonStyled>
-                        <SelectStyled value={orderValue} onChange={handleOrderEmployee}>
+                        <SelectStyled value={orderValue} onChange={handleChangeOrderEmployee} ref={selectRef}>
                             <option value='start_date'>Start Date</option>
                             <option value="name">First Name</option>
                         </SelectStyled>
