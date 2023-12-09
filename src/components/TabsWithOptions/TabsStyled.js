@@ -14,6 +14,7 @@ export const TabsStyled = styled.ul`
         padding: 1em;
         padding-left: 3em;
         padding-right: 3em;
+        cursor: pointer;
     }
 
     & li:hover {

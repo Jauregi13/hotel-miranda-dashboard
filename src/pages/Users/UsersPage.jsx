@@ -24,8 +24,6 @@ export const UsersPage = () => {
     const [loading,setLoading] = useState(false);
     const [employeesList,setEmployeesList] = useState([]);
     const [orderValue,setOrderValue] = useState('start_date')
-    const selectRef = useRef()
-
 
     useEffect(() => {
 
@@ -145,7 +143,7 @@ export const UsersPage = () => {
 
                     <OptionsStyled>
                         <ButtonStyled status="create">+ New Employee</ButtonStyled>
-                        <SelectStyled value={orderValue} onChange={handleChangeOrderEmployee} ref={selectRef}>
+                        <SelectStyled value={orderValue} onChange={handleChangeOrderEmployee}>
                             <option value='start_date'>Start Date</option>
                             <option value="name">First Name</option>
                         </SelectStyled>
