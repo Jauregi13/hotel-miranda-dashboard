@@ -20,4 +20,8 @@ export const OptionsStyled = styled.div`
     & select {
         margin-left: 2em;
     }
+
+    & select option {
+        text-align: center;
+    }
 `

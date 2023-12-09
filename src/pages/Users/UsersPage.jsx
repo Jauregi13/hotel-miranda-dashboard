@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getEmployeesData, getEmployeesError, getEmployeesStatus } from "../../features/employees/employeesSlice"
 import { useEffect, useState } from "react"
 import { getEmployeesThunk } from "../../features/employees/employeesThunk"
+import { useRef } from "react"
 
 export const UsersPage = () => {
 
@@ -22,6 +23,7 @@ export const UsersPage = () => {
     const employeesError = useSelector(getEmployeesError);
     const [loading,setLoading] = useState(false);
     const [employeesList,setEmployeesList] = useState([]);
+    const [orderValue,setOrderValue] = useState('start_date')
 
     useEffect(() => {
 
@@ -46,6 +48,7 @@ export const UsersPage = () => {
             case 'fulfilled':
 
                 setEmployeesList(employees);
+                handleOrderEmployee(orderValue,employees)
                 setLoading(false);
 
             default:
@@ -53,6 +56,77 @@ export const UsersPage = () => {
         }
 
     },[dispatch,employeesStatus,employees])
+
+    const handleFilter = (type) => {
+
+        let employeesFilter;
+
+        if(type === 'all'){
+            employeesFilter = employees;
+        }
+        else if(type === 'active'){
+            employeesFilter = employees.filter((room) => room.status === 'ACTIVE');
+        }
+        else if(type === 'inactive'){
+            employeesFilter = employees.filter((room) => room.status === 'INACTIVE');
+        }
+
+        setEmployeesList(employeesFilter);
+        handleOrderEmployee('start_date',employeesFilter)
+        
+        
+    }
+
+    const handleChangeOrderEmployee = (event) => {
+
+        handleOrderEmployee(event.target.value,employeesList)
+
+    }
+
+    const handleOrderEmployee = (orderValue, employeesList) => {
+
+        const orderList = [...employeesList]
+        setOrderValue(orderValue)
+
+        if(orderValue === 'start_date'){
+
+            orderList.sort((a,b) => {
+
+                let date1 = new Date(a.start_date)
+                let date2 = new Date(b.start_date)
+
+                if(date2 > date1){
+                    return 1
+                }
+                else if(date2 < date1){
+                    return -1
+                }
+
+                return 0
+
+            })
+        }
+        else if(orderValue === 'name'){
+
+            orderList.sort((a,b) => {
+
+                if(a.name > b.name){
+                    return 1
+                }
+
+                else if(a.name < b.name){
+                    return -1
+                }
+
+                return 0
+            })
+        }
+
+        setEmployeesList(orderList);
+
+    }
+
+    
 
     return (
 
@@ -62,15 +136,16 @@ export const UsersPage = () => {
 
                 <TabsWithOptionsStyled>
                     <TabsStyled>     
-                        <li>All Employee</li>
-                        <li>Active Employee</li>
-                        <li>Inactive Employee</li>
+                        <li onClick={() => handleFilter('all')}>All Employee</li>
+                        <li onClick={() => handleFilter('active')}>Active Employee</li>
+                        <li onClick={() => handleFilter('inactive')}>Inactive Employee</li>
                     </TabsStyled>
 
                     <OptionsStyled>
                         <ButtonStyled status="create">+ New Employee</ButtonStyled>
-                        <SelectStyled>
-                            <option value='Newest'>Newest</option>
+                        <SelectStyled value={orderValue} onChange={handleChangeOrderEmployee}>
+                            <option value='start_date'>Start Date</option>
+                            <option value="name">First Name</option>
                         </SelectStyled>
                     </OptionsStyled>
                 </TabsWithOptionsStyled>
@@ -97,7 +172,7 @@ export const UsersPage = () => {
 
                                     <tr key={employee.id}>
                                         <td>
-                                            <ImageWithName src="/src/assets/founder.png" type="user" name={employee.name} id={employee.id} email={employee.email}></ImageWithName>
+                                            <ImageWithName src="/src/assets/founder.png" type="user" name={employee.name} id={employee.id} email={employee.email} start_date={employee.start_date} />
                                         </td>
                                         <td>
                                             <p>{employee.description}</p>
