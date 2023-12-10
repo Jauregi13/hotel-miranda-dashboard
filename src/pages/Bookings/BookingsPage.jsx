@@ -72,7 +72,7 @@ export const BookingsPage = () => {
             orderType = type
         }
 
-        
+
         if(type === 'all'){
             bookingsFilter = bookings
         }
@@ -144,8 +144,8 @@ export const BookingsPage = () => {
             <TabsWithOptionsStyled>
                 <TabsStyled>
                     <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : null }>All Bookings</li>
-                    <li onClick={() => handleFilter('check_in')} className={tabActive === 'Check In' ? 'active' : null }>Check In</li>
-                    <li onClick={() => handleFilter('check_out')} className={tabActive === 'Check Out' ? 'active' : null }>Check Out</li>
+                    <li onClick={() => handleFilter('check_in')} className={tabActive === 'check_in' ? 'active' : null }>Check In</li>
+                    <li onClick={() => handleFilter('check_out')} className={tabActive === 'check_out' ? 'active' : null }>Check Out</li>
                     <li onClick={() => handleFilter('In Progress')} className={tabActive === 'In Progress' ? 'active' : null }>In Progress</li>
                 </TabsStyled>
                 <OptionsStyled>
