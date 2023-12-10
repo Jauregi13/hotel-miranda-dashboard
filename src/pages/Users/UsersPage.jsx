@@ -24,6 +24,7 @@ export const UsersPage = () => {
     const [loading,setLoading] = useState(false);
     const [employeesList,setEmployeesList] = useState([]);
     const [orderValue,setOrderValue] = useState('start_date')
+    const [tabActive, setTabActive] = useState('all')
 
     useEffect(() => {
 
@@ -62,15 +63,19 @@ export const UsersPage = () => {
         let employeesFilter;
 
         if(type === 'all'){
+            setTabActive('all')
             employeesFilter = employees;
         }
         else if(type === 'active'){
+            setTabActive('active')
             employeesFilter = employees.filter((room) => room.status === 'ACTIVE');
         }
         else if(type === 'inactive'){
+            setTabActive('inactive')
             employeesFilter = employees.filter((room) => room.status === 'INACTIVE');
         }
 
+        
         setEmployeesList(employeesFilter);
         handleOrderEmployee('start_date',employeesFilter)
         
@@ -136,9 +141,9 @@ export const UsersPage = () => {
 
                 <TabsWithOptionsStyled>
                     <TabsStyled>     
-                        <li onClick={() => handleFilter('all')}>All Employee</li>
-                        <li onClick={() => handleFilter('active')}>Active Employee</li>
-                        <li onClick={() => handleFilter('inactive')}>Inactive Employee</li>
+                        <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : null}>All Employee</li>
+                        <li onClick={() => handleFilter('active')} className={tabActive === 'active' ? 'active' : null}>Active Employee</li>
+                        <li onClick={() => handleFilter('inactive')} className={tabActive === 'inactive' ? 'active' : null}>Inactive Employee</li>
                     </TabsStyled>
 
                     <OptionsStyled>

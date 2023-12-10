@@ -17,7 +17,7 @@ export const TabsStyled = styled.ul`
         cursor: pointer;
     }
 
-    & li:hover {
+    & li:hover, & li.active {
         color: #135846;
         border-bottom: 2px solid #135846;
     }
