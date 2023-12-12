@@ -32,6 +32,11 @@ export const Layout = () => {
         
                     setTitle('Guest List');
                     break;
+                
+                case '/bookings/:id':
+
+                    setTitle('Guest Details');
+                    break;
     
                 case '/contact':
     

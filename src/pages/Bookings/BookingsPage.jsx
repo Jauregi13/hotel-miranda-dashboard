@@ -13,12 +13,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
 import { useEffect, useState } from "react"
 import { getBookingsThunk } from "../../features/bookings/bookingsThunk"
+import { useNavigate } from "react-router-dom"
 
 
 
 export const BookingsPage = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const bookings = useSelector(getBookingsData)
     const bookingsStatus = useSelector(getBookingsStatus)
     const bookingsError = useSelector(getBookingsError)
@@ -179,7 +181,7 @@ export const BookingsPage = () => {
                     {
                         bookingsList.map((booking) => (
 
-                        <tr key={booking.id}>
+                        <tr key={booking.id} onClick={() => navigate(`/bookings/${booking.id}`)}>
                             <td>
                                 <ImageWithName src={guestImage} name={booking.guest} id={booking.id}/>
                             </td>

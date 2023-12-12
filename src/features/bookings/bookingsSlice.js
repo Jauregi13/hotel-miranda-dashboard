@@ -11,6 +11,15 @@ export const BookingsSlice = createSlice({
         status: 'idle',
         error: null
     },
+    reducers: {
+
+        getBookingById: (state,action) => {
+            let booking = state.data.filter((booking) => booking.id === action.payload)
+            return booking
+            
+        }
+
+    },
     extraReducers: (builder) => {
 
         builder.addCase(getBookingsThunk.pending, (state,action) => {
