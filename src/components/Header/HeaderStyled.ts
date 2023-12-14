@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
+interface HeaderStyledProp {
+    openmenu : boolean
+}
 
-export const HeaderStyled = styled.header`
+export const HeaderStyled = styled.header<HeaderStyledProp>`
 
     position: fixed;
     top: 0;

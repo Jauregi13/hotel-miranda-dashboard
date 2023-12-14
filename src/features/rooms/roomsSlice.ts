@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getRoomsThunk } from './roomsThunk'
-import { RoomSliceInterface } from "../../interfaces/RoomSliceInterface";
+import { RoomSliceInterface } from "../../interfaces/Room/RoomSliceInterface";
 import { StatusSlice } from "../../interfaces/types";
-import { RoomInterface } from "../../interfaces/RoomInterfaces";
+import { RoomInterface } from "../../interfaces/Room/RoomInterface";
+import { RootState } from "../../app/store";
 
 const initialState: RoomSliceInterface = {
     data: [],
@@ -34,6 +35,6 @@ export const RoomsSlice = createSlice({
     }
 })
 
-export const getAllRoomsData = (state) : RoomInterface[] => state.rooms.data
-export const getRoomsStatus = (state) => state.rooms.status
-export const getRoomsError = (state) => state.rooms.error
+export const getAllRoomsData = (state: RootState) : RoomInterface[] => state.rooms.data
+export const getRoomsStatus = (state: RootState) => state.rooms.status
+export const getRoomsError = (state: RootState) => state.rooms.error

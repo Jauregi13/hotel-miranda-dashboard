@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
+interface MainStyledProp {
+    openmenu : boolean
+}
 
 
-export const MainStyled = styled.main`
+export const MainStyled = styled.main<MainStyledProp>`
 
     position: absolute;
     top: 14vh;

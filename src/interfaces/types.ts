@@ -5,8 +5,8 @@ export enum Status {
     check_in = "Check In",
     check_out = "Check Out",
     in_progress = "In Progress",
-    active = "Active",
-    inactive = "Inactive"
+    active = "ACTIVE",
+    inactive = "INACTIVE"
 }
 
 export enum StatusSlice {

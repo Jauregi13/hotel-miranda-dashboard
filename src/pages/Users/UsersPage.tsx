@@ -9,20 +9,21 @@ import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWith
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { SelectStyled } from "../../components/SelectStyled"
-import { useDispatch, useSelector } from "react-redux"
 import { getEmployeesData, getEmployeesError, getEmployeesStatus } from "../../features/employees/employeesSlice"
 import { useEffect, useState } from "react"
 import { getEmployeesThunk } from "../../features/employees/employeesThunk"
-import { useRef } from "react"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { EmployeeInterface } from "../../interfaces/Employee/EmployeeInterface"
+import { Status, StatusSlice } from "../../interfaces/types"
 
 export const UsersPage = () => {
 
-    const dispatch = useDispatch();
-    const employees = useSelector(getEmployeesData);
-    const employeesStatus = useSelector(getEmployeesStatus);
-    const employeesError = useSelector(getEmployeesError);
-    const [loading,setLoading] = useState(false);
-    const [employeesList,setEmployeesList] = useState([]);
+    const dispatch = useAppDispatch();
+    const employees = useAppSelector<EmployeeInterface[]>(getEmployeesData);
+    const employeesStatus = useAppSelector<StatusSlice>(getEmployeesStatus);
+    const employeesError = useAppSelector(getEmployeesError);
+    const [loading,setLoading] = useState<boolean>(false);
+    const [employeesList,setEmployeesList] = useState<EmployeeInterface[]>([]);
     const [orderValue,setOrderValue] = useState('start_date')
 
     useEffect(() => {
@@ -57,18 +58,18 @@ export const UsersPage = () => {
 
     },[dispatch,employeesStatus,employees])
 
-    const handleFilter = (type) => {
+    const handleFilter = (type: string) => {
 
-        let employeesFilter;
+        let employeesFilter: EmployeeInterface[] = [];
 
         if(type === 'all'){
             employeesFilter = employees;
         }
         else if(type === 'active'){
-            employeesFilter = employees.filter((room) => room.status === 'ACTIVE');
+            employeesFilter = employees.filter((room) => room.status === Status.active);
         }
         else if(type === 'inactive'){
-            employeesFilter = employees.filter((room) => room.status === 'INACTIVE');
+            employeesFilter = employees.filter((room) => room.status === Status.inactive);
         }
 
         setEmployeesList(employeesFilter);
@@ -77,13 +78,13 @@ export const UsersPage = () => {
         
     }
 
-    const handleChangeOrderEmployee = (event) => {
+    const handleChangeOrderEmployee = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
         handleOrderEmployee(event.target.value,employeesList)
 
     }
 
-    const handleOrderEmployee = (orderValue, employeesList) => {
+    const handleOrderEmployee = (orderValue: string, employeesList: EmployeeInterface[]) => {
 
         const orderList = [...employeesList]
         setOrderValue(orderValue)
@@ -172,7 +173,13 @@ export const UsersPage = () => {
 
                                     <tr key={employee.id}>
                                         <td>
-                                            <ImageWithName src="/src/assets/founder.png" type="user" name={employee.name} id={employee.id} email={employee.email} start_date={employee.start_date} />
+                                            <ImageWithName src="/src/assets/founder.png" 
+                                                type="user" 
+                                                name={employee.name} 
+                                                id={employee.id} 
+                                                email={employee.email} 
+                                                start_date={employee.start_date} 
+                                            />
                                         </td>
                                         <td>
                                             <p>{employee.description}</p>

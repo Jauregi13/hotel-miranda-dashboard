@@ -1,12 +1,12 @@
-import { Status } from "./types"
+import { Status } from "../types"
 
 
 
 export interface RoomInterface {
 
     id: string
-    room_number: string
-    room_type: string
+    number: string
+    type: string
     description: string
     amenities: Array<string>
     cancellation: string

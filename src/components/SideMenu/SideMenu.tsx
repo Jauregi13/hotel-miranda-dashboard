@@ -8,7 +8,7 @@ import { useMenuOpenContext } from "../MenuOpenContext"
 
 export const SideMenu = () => {
 
-    const {isOpen} = useMenuOpenContext()
+    const {isOpen} : {isOpen : boolean} = useMenuOpenContext()
 
     return (
 

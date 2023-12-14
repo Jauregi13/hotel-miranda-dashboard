@@ -1,5 +1,5 @@
-import { RoomInterface } from "./RoomInterfaces";
-import { StatusSlice } from "./types";
+import { RoomInterface } from "./RoomInterface";
+import { StatusSlice } from "../types";
 
 
 export interface RoomSliceInterface {

@@ -8,23 +8,23 @@ import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWith
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { SelectStyled } from "../../components/SelectStyled"
 import { RoomsPageStyled } from "./RoomsPageStyled"
+import roomImage from './../../assets/hotel-room.jpg'
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { getAllRoomsData, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { getRoomsThunk } from "../../features/rooms/roomsThunk"
-import { RoomInterface } from "../../interfaces/RoomInterfaces"
+import { RoomInterface } from "../../interfaces/Room/RoomInterface"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { StatusSlice } from "../../interfaces/types"
-import { Dispatch } from "@reduxjs/toolkit"
 
 
 export const RoomsPage = () => {
 
-    const dispatch: Dispatch = useDispatch()
-    const roomsStatus = useSelector<StatusSlice>(getRoomsStatus)
-    const roomsAll = useSelector<RoomInterface[]>(getAllRoomsData)
-    const [roomList,setRoomList] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [orderValue,setOrderValue] = useState('id')
+    const dispatch = useAppDispatch()
+    const roomsStatus = useAppSelector<StatusSlice>(getRoomsStatus)
+    const roomsAll = useAppSelector<RoomInterface[]>(getAllRoomsData)
+    const [roomList,setRoomList] = useState<RoomInterface[]>([])
+    const [loading, setLoading] = useState<boolean>(false)
+    const [orderValue,setOrderValue] = useState<string>('id')
 
     useEffect(() => {
 
@@ -57,7 +57,7 @@ export const RoomsPage = () => {
 
     const handleFilter = (type: string) => {
 
-        let roomsFilter;
+        let roomsFilter : RoomInterface[] = [];
         setOrderValue('id');
 
         if(type === 'all'){
@@ -75,7 +75,7 @@ export const RoomsPage = () => {
         
     }
 
-    const handleOrderRoom = (event) => {
+    const handleOrderRoom = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
         console.log('ordenado');
 
@@ -192,8 +192,8 @@ export const RoomsPage = () => {
                         roomList.map((room: RoomInterface) => (
 
                             <tr key={room.id}>
-                                <td><RoomName id={room.id} number={room.room_number}/></td>
-                                <td><p>{room.room_type}</p></td>
+                                <td><RoomName id={room.id} number={room.number} image={roomImage}/></td>
+                                <td><p>{room.type}</p></td>
                                 <td><p>
                                         {room.amenities.join(', ')}
                                     </p>
