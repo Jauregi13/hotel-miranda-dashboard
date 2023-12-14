@@ -1,4 +1,4 @@
-import { useLocation, Outlet, useNavigate } from "react-router-dom"
+import { useLocation, Outlet, useNavigate, Location, NavigateFunction } from "react-router-dom"
 import { Header } from "../Header/Header"
 import { SideMenu } from "../SideMenu/SideMenu"
 import { useEffect, useState } from "react"
@@ -7,9 +7,9 @@ import { useMenuOpenContext } from "../MenuOpenContext"
 
 export const Layout = () => {
 
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [title,setTitle] = useState('Dashboard');
+    const location: Location = useLocation();
+    const navigate : NavigateFunction = useNavigate();
+    const [title,setTitle] = useState<string>('Dashboard');
     const {isOpen} = useMenuOpenContext();
     const [user,setUser] = useState(localStorage.getItem('loginSession'));
 

@@ -8,20 +8,23 @@ import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWith
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { SelectStyled } from "../../components/SelectStyled"
 import { RoomsPageStyled } from "./RoomsPageStyled"
+import roomImage from './../../assets/hotel-room.jpg'
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { getAllRoomsData, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { getRoomsThunk } from "../../features/rooms/roomsThunk"
+import { RoomInterface } from "../../interfaces/Room/RoomInterface"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { StatusSlice } from "../../interfaces/types"
 
 
 export const RoomsPage = () => {
 
-    const dispatch = useDispatch()
-    const roomsStatus = useSelector(getRoomsStatus)
-    const roomsAll = useSelector(getAllRoomsData)
-    const [roomList,setRoomList] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [orderValue,setOrderValue] = useState('id')
+    const dispatch = useAppDispatch()
+    const roomsStatus = useAppSelector<StatusSlice>(getRoomsStatus)
+    const roomsAll = useAppSelector<RoomInterface[]>(getAllRoomsData)
+    const [roomList,setRoomList] = useState<RoomInterface[]>([])
+    const [loading, setLoading] = useState<boolean>(false)
+    const [orderValue,setOrderValue] = useState<string>('id')
 
     useEffect(() => {
 
@@ -52,19 +55,19 @@ export const RoomsPage = () => {
 
     },[dispatch,roomsStatus,roomsAll])
 
-    const handleFilter = (type) => {
+    const handleFilter = (type: string) => {
 
-        let roomsFilter;
+        let roomsFilter : RoomInterface[] = [];
         setOrderValue('id');
 
         if(type === 'all'){
             roomsFilter = roomsAll;
         }
         else if(type === 'available'){
-            roomsFilter = roomsAll.filter((room) => room.status === 'Available');
+            roomsFilter = roomsAll.filter((room: RoomInterface) => room.status === 'Available');
         }
         else if(type === 'booked'){
-            roomsFilter = roomsAll.filter((room) => room.status === 'Booked');
+            roomsFilter = roomsAll.filter((room: RoomInterface) => room.status === 'Booked');
         }
 
         setRoomList(roomsFilter);
@@ -72,7 +75,7 @@ export const RoomsPage = () => {
         
     }
 
-    const handleOrderRoom = (event) => {
+    const handleOrderRoom = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
         console.log('ordenado');
 
@@ -83,7 +86,7 @@ export const RoomsPage = () => {
 
             case 'id':
 
-                orderList.sort((a,b) => {
+                orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
                     let firstId = parseInt(a.id.substring(1,a.id.length));
                     let secondId = parseInt(b.id.substring(1,b.id.length));
@@ -95,7 +98,7 @@ export const RoomsPage = () => {
             
             case 'available':
 
-                orderList.sort((a,b) => {
+                orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
                     if(a.status === 'Available' && b.status !== 'Available'){
                         return -1;
@@ -110,7 +113,7 @@ export const RoomsPage = () => {
             
             case 'booked':
 
-                orderList.sort((a,b) => {
+                orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
                     if(a.status === 'Booked' && b.status !== 'Booked'){
                         return -1;
@@ -125,7 +128,7 @@ export const RoomsPage = () => {
 
             case 'lower':
 
-                orderList.sort((a,b) => {
+                orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
                     return a.price - b.price;
                 })
@@ -134,7 +137,7 @@ export const RoomsPage = () => {
 
             case 'higher':
 
-                orderList.sort((a,b) => {
+                orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
                     return b.price - a.price;
                 })
@@ -186,11 +189,11 @@ export const RoomsPage = () => {
                 <TBodyStyled>
                     
                     {
-                        roomList.map((room) => (
+                        roomList.map((room: RoomInterface) => (
 
                             <tr key={room.id}>
-                                <td><RoomName id={room.id} number={room.room_number}/></td>
-                                <td><p>{room.room_type}</p></td>
+                                <td><RoomName id={room.id} number={room.number} image={roomImage}/></td>
+                                <td><p>{room.type}</p></td>
                                 <td><p>
                                         {room.amenities.join(', ')}
                                     </p>

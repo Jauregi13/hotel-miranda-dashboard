@@ -1,11 +1,15 @@
-import { BedIcon } from "../IconsStyled"
 import { Styledh1 } from "../headings"
 import { CardKPIStyled } from "./CardKPIStyled"
+import { ReactElement } from "react"
 
 
+interface CardKPIProps {
+    icon: ReactElement
+    number: string
+    text: string
+}
 
-export const CardKPI = (props) => {
-
+export const CardKPI = (props: CardKPIProps) => {
 
     return (
 
