@@ -9,7 +9,6 @@ export const TBodyStyled = styled.tbody`
         padding: 1em;
         padding-bottom: 0.5em;
         text-align: start;
-        
         max-width: 250px;
 
     }
@@ -20,6 +19,10 @@ export const TBodyStyled = styled.tbody`
 
     & tr {
         vertical-align: middle;
+    }
+
+    & tr:hover {
+        box-shadow: 0px 4px 30px #0000001A;
     }
 
     & tr td p {

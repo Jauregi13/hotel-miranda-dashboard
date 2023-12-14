@@ -38,29 +38,23 @@ export const ButtonStyled = styled.button<ButtonProps>`
                 return `
                     background-color: #E23428;
                 `
-            case 'booked-guest':
+            case 'Check In':
 
                 return `
                     background-color: #E8FFEE;
                     color: #5AD07A;
                 `
-            case 'refund':
+            case 'Check Out':
 
                 return `
                     background-color: #FFEDEC;
                     color: #E23428;
                 `
-            case 'pending':
+            case 'In Progress':
 
                 return `
-                    background-color: #E2E2E2;
-                    color: #6D6D6D;
-                `
-            case 'canceled':
-
-                return `
-                    background-color: #575757;
-                    color: #BEBEBE;
+                    background-color: #fbfbc7;
+                    color: #989e2e;
                 `
             case 'archive':
             case 'inactive':

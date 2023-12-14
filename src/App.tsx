@@ -9,6 +9,7 @@ import { ContactPage } from './pages/Contact/ContactPage'
 import { MenuOpenProvider } from './components/MenuOpenContext'
 import { UsersPage } from './pages/Users/UsersPage'
 import { LoginPage } from './pages/Login/LoginPage'
+import { GuestDetails } from './pages/GuestDetails/GuestDetails'
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
                 <Route path='/' element={<HomePage />} />
                 <Route path='/rooms' element={<RoomsPage />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
+                <Route path='/bookings/:id' loader={({params}) => console.log(params)} element={<GuestDetails />} />
                 <Route path='/contact' element={<ContactPage />}/>
                 <Route path='/users' element={<UsersPage />}/>
               </Route>

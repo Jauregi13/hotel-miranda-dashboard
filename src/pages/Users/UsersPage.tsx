@@ -24,7 +24,8 @@ export const UsersPage = () => {
     const employeesError = useAppSelector(getEmployeesError);
     const [loading,setLoading] = useState<boolean>(false);
     const [employeesList,setEmployeesList] = useState<EmployeeInterface[]>([]);
-    const [orderValue,setOrderValue] = useState('start_date')
+    const [orderValue,setOrderValue] = useState<string>('start_date')
+    const [tabActive, setTabActive] = useState<string>('all')
 
     useEffect(() => {
 
@@ -63,15 +64,19 @@ export const UsersPage = () => {
         let employeesFilter: EmployeeInterface[] = [];
 
         if(type === 'all'){
+            setTabActive('all')
             employeesFilter = employees;
         }
         else if(type === 'active'){
+            setTabActive('active')
             employeesFilter = employees.filter((room) => room.status === Status.active);
         }
         else if(type === 'inactive'){
+            setTabActive('inactive')
             employeesFilter = employees.filter((room) => room.status === Status.inactive);
         }
 
+        
         setEmployeesList(employeesFilter);
         handleOrderEmployee('start_date',employeesFilter)
         
@@ -137,9 +142,9 @@ export const UsersPage = () => {
 
                 <TabsWithOptionsStyled>
                     <TabsStyled>     
-                        <li onClick={() => handleFilter('all')}>All Employee</li>
-                        <li onClick={() => handleFilter('active')}>Active Employee</li>
-                        <li onClick={() => handleFilter('inactive')}>Inactive Employee</li>
+                        <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : undefined}>All Employee</li>
+                        <li onClick={() => handleFilter('active')} className={tabActive === 'active' ? 'active' : undefined}>Active Employee</li>
+                        <li onClick={() => handleFilter('inactive')} className={tabActive === 'inactive' ? 'active' : undefined}>Inactive Employee</li>
                     </TabsStyled>
 
                     <OptionsStyled>

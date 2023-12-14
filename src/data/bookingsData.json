@@ -177,6 +177,16 @@
     "check_in": "2023-12-15",
     "check_out": "2023-12-20",
     "special_request": "Habitación adaptada para personas con movilidad reducida",
+    "room_type":{
+        "id": "#1017",
+        "room_type": "Single Bed",
+        "room_number": "Standard Q-33222",
+        "description": "Habitación individual con todas las comodidades necesarias.",
+        "price": 135.25,
+        "offer": 8.5,
+        "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
+        "amenities": ["Shower", "Wifi"]
+    },
     "status": "Check Out"
     },
     {
@@ -186,6 +196,16 @@
     "check_in": "2023-12-20",
     "check_out": "2023-12-25",
     "special_request": "Petición de desayuno en la habitación",
+    "room_type":{
+        "id": "#1017",
+        "room_type": "Single Bed",
+        "room_number": "Standard Q-33222",
+        "description": "Habitación individual con todas las comodidades necesarias.",
+        "price": 135.25,
+        "offer": 8.5,
+        "cancellation": "Política de cancelación estándar. Consulta detalles al realizar la reserva.",
+        "amenities": ["Shower", "Wifi"]
+    },
     "status": "Check Out"
     },
     {
