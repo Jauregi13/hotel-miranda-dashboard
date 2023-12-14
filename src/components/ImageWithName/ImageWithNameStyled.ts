@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
+interface ImageNameStyledProp {
+    type: string
+}
 
-export const ImageWithNameStyled = styled.div`
+export const ImageWithNameStyled = styled.div<ImageNameStyledProp>`
 
     display: flex;
 

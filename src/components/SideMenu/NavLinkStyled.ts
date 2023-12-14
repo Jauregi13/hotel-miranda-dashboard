@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
+interface NavLinkStyledProp {
+    theme : DefaultTheme
+}
 
-
-export const NavLinkStyled = styled(NavLink)`
+export const NavLinkStyled = styled(NavLink)<NavLinkStyledProp>`
 
     color: ${props => props.theme.colors.lightGreen};
     display: flex;

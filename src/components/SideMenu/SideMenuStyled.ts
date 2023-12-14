@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const SideMenuStyled = styled.aside`
+interface SideMenuStyledProp {
+    openmenu : boolean
+}
+
+export const SideMenuStyled = styled.aside<SideMenuStyledProp>`
 
     padding-top: 2em;
     position: fixed;

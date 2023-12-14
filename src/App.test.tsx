@@ -8,7 +8,7 @@ import './setupTests'
 
 describe("TEST BUTTON STYLE",() => {
 
-    test("Renderizar botón cualquiera", () => {
+    test("Renderizar un botón cualquiera", () => {
     
         render(<ButtonStyled data-testid="button-active">ACTIVE</ButtonStyled>)
         const button = screen.getByTestId('button-active')

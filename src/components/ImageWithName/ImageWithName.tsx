@@ -1,7 +1,16 @@
 import { ImageWithNameStyled } from "./ImageWithNameStyled"
 
 
-export const ImageWithName = (props) => {
+interface ImageWithNameProps {
+    name : string
+    id: string
+    src: string
+    type: string
+    email?: string
+    start_date?: string
+}
+
+export const ImageWithName = (props: ImageWithNameProps) => {
 
 
     return (

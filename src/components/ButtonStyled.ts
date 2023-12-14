@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
+interface ButtonProps {
 
+    request?: string,
+    status?: string
+}
 
-export const ButtonStyled = styled.button`
+export const ButtonStyled = styled.button<ButtonProps>`
 
     color: #FFFFFF;
     font-size: 1rem;
     border-radius: 12px;
     width: 8em;
 
-    ${(props) => 
+    ${(props : ButtonProps) => 
 
         props.request === 'true' &&
         
@@ -21,7 +25,7 @@ export const ButtonStyled = styled.button`
     }
 
 
-    ${(props) => {
+    ${(props : ButtonProps) => {
 
         switch (props.status) {
             case 'Available':
