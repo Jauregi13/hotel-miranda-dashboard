@@ -2,29 +2,31 @@ import { LoginPageStyled } from "./LoginPageStyled"
 import logo from './../../assets/logo.png'
 import { InputStyled } from "../../components/InputStyled"
 import { ButtonStyled } from "../../components/ButtonStyled"
-import userAdmin from './../../data/user.json'
-import { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import userAdmin from '../../data/user.json'
+import { FormEvent, useEffect, useState } from "react"
+import { NavigateFunction, useNavigate } from "react-router-dom"
+
+interface UserInterface {
+    user: string
+    password: string
+}
 
 export const LoginPage = () => {
 
-    const userInput = useRef(null)
-    const passwordInput = useRef(null)
-    const navigate = useNavigate()
-    const [user,setUser] = useState({
+    const navigate : NavigateFunction = useNavigate()
+    const [user,setUser] = useState<UserInterface>({
         user: '',
         password: ''
     })
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault()
+        const form = event.target as HTMLFormElement
         setUser({
-            user: userInput.current.value,
-            password: passwordInput.current.value
-        })
-        
-
+            user: form.user.value,
+            password: form.password.value
+        })        
         
         
     }
@@ -48,12 +50,12 @@ export const LoginPage = () => {
                 <InputStyled>
 
                     <label htmlFor="name">User</label>
-                    <input type="text" name="user" ref={userInput}/>
+                    <input type="text" name="user"/>
                 
                 </InputStyled>
                 <InputStyled>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" ref={passwordInput}/>
+                    <input type="password" name="password"/>
                 </InputStyled>
                 <ButtonStyled type="submit" status="login">LOGIN</ButtonStyled>
                 

@@ -1,9 +1,12 @@
 
 
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
+interface NavStyledProp {
+    theme: DefaultTheme
+}
 
-export const NavStyled = styled.nav`
+export const NavStyled = styled.nav<NavStyledProp>`
 
     ul {
         padding: 0;

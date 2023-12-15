@@ -14,7 +14,7 @@ export const getEmployeesThunk = createAsyncThunk<EmployeeInterface[], void, { s
                     name: employee.name,
                     id: employee.id,
                     email: employee.email,
-                    start_date: employee.start_date,
+                    start_date: new Date(employee.start_date),
                     description: employee.description,
                     contact: employee.contact,
                     status: employee.status as Status.active | Status.inactive

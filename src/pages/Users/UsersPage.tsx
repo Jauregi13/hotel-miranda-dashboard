@@ -98,13 +98,10 @@ export const UsersPage = () => {
 
             orderList.sort((a,b) => {
 
-                let date1 = new Date(a.start_date)
-                let date2 = new Date(b.start_date)
-
-                if(date2 > date1){
+                if(b.start_date > a.start_date){
                     return 1
                 }
-                else if(date2 < date1){
+                else if(b.start_date < a.start_date){
                     return -1
                 }
 
@@ -183,7 +180,7 @@ export const UsersPage = () => {
                                                 name={employee.name} 
                                                 id={employee.id} 
                                                 email={employee.email} 
-                                                start_date={employee.start_date} 
+                                                start_date={employee.start_date.toDateString()} 
                                             />
                                         </td>
                                         <td>
