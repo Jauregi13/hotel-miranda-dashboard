@@ -51,7 +51,7 @@ function App() {
                 <Route path='/' element={<HomePage />} />
                 <Route path='/rooms' element={<RoomsPage />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
-                <Route path='/bookings/:id' loader={({params}) => console.log(params)} element={<GuestDetails />} />
+                <Route path='/bookings/:id' element={<GuestDetails />} />
                 <Route path='/contact' element={<ContactPage />}/>
                 <Route path='/users' element={<UsersPage />}/>
               </Route>

@@ -9,25 +9,27 @@ import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
 import { BookingsPageStyled } from "./BookingsPageStyled"
 import guestImage from './../../assets/founder.png'
-import { useDispatch, useSelector } from "react-redux"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
 import { useEffect, useState } from "react"
 import { getBookingsThunk } from "../../features/bookings/bookingsThunk"
-import { useNavigate } from "react-router-dom"
+import { NavigateFunction, useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { BookingInterface } from "../../interfaces/Booking/BookingInterface"
+import { StatusSlice } from "../../interfaces/types"
 
 
 
 export const BookingsPage = () => {
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const bookings = useSelector(getBookingsData)
-    const bookingsStatus = useSelector(getBookingsStatus)
-    const bookingsError = useSelector(getBookingsError)
-    const [loading, setLoading] = useState(false)
-    const [bookingsList,setBookingsList] = useState([])
-    const [tabActive, setTabActive] = useState('all')
-    const [orderValue, setOrderValue] = useState('order_date')
+    const dispatch = useAppDispatch()
+    const navigate: NavigateFunction = useNavigate()
+    const bookings = useAppSelector<BookingInterface[]>(getBookingsData)
+    const bookingsStatus = useAppSelector<StatusSlice>(getBookingsStatus)
+    const bookingsError = useAppSelector(getBookingsError)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [bookingsList,setBookingsList] = useState<BookingInterface[]>([])
+    const [tabActive, setTabActive] = useState<string>('all')
+    const [orderValue, setOrderValue] = useState<string>('order_date')
 
     useEffect(() => {
 
@@ -60,7 +62,7 @@ export const BookingsPage = () => {
     },[dispatch,bookingsStatus,bookings])
 
 
-    const handleFilter = (type) => {
+    const handleFilter = (type: string) => {
 
         let bookingsFilter = [];
         let orderType = '';
@@ -79,7 +81,7 @@ export const BookingsPage = () => {
             bookingsFilter = bookings
         }
         else {
-            let typeFormatted = type
+            let typeFormatted : string | string[] = type
             if(type !== 'In Progress'){
                 typeFormatted = type.split('_')
                 typeFormatted = typeFormatted[0].charAt(0).toUpperCase() + typeFormatted[0].slice(1) + ' ' + typeFormatted[1].charAt(0).toUpperCase() + typeFormatted[1].slice(1)
@@ -92,7 +94,7 @@ export const BookingsPage = () => {
 
     }
 
-    const handleOrderBookings = (bookingList,orderType) => {
+    const handleOrderBookings = (bookingList: BookingInterface[], orderType : string) => {
 
         let orderBookingList = [...bookingList]
         setOrderValue(orderType)
@@ -111,15 +113,12 @@ export const BookingsPage = () => {
         }
 
         else {
-            orderBookingList.sort((a,b) => {
-
-                let date1 = new Date(a[orderType])
-                let date2 = new Date(b[orderType])
+            orderBookingList.sort((a: BookingInterface,b: BookingInterface) => {
                 
-                if(date1 < date2){
+                if(a[orderType] < b[orderType]){
                     return 1
                 }
-                else if(date1 > date2){
+                else if(a[orderType] > b[orderType]){
                     return -1
                 }
                 return 0
@@ -132,7 +131,7 @@ export const BookingsPage = () => {
 
     }
 
-    const handleOrderChange = (event) => {
+    const handleOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
         handleOrderBookings(bookingsList, event.target.value)
     }
@@ -145,10 +144,10 @@ export const BookingsPage = () => {
 
             <TabsWithOptionsStyled>
                 <TabsStyled>
-                    <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : null }>All Bookings</li>
-                    <li onClick={() => handleFilter('check_in')} className={tabActive === 'check_in' ? 'active' : null }>Check In</li>
-                    <li onClick={() => handleFilter('check_out')} className={tabActive === 'check_out' ? 'active' : null }>Check Out</li>
-                    <li onClick={() => handleFilter('In Progress')} className={tabActive === 'In Progress' ? 'active' : null }>In Progress</li>
+                    <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : undefined }>All Bookings</li>
+                    <li onClick={() => handleFilter('check_in')} className={tabActive === 'check_in' ? 'active' : undefined }>Check In</li>
+                    <li onClick={() => handleFilter('check_out')} className={tabActive === 'check_out' ? 'active' : undefined }>Check Out</li>
+                    <li onClick={() => handleFilter('In Progress')} className={tabActive === 'In Progress' ? 'active' : undefined }>In Progress</li>
                 </TabsStyled>
                 <OptionsStyled>
                     <ButtonStyled status="create">+ New Booking</ButtonStyled>
@@ -183,21 +182,21 @@ export const BookingsPage = () => {
 
                         <tr key={booking.id} onClick={() => navigate(`/bookings/${booking.id}`)}>
                             <td>
-                                <ImageWithName src={guestImage} name={booking.guest} id={booking.id}/>
+                                <ImageWithName src={guestImage} name={booking.guest} id={booking.id} type="booking"/>
                             </td>
-                            <td><p>{booking.order_date}</p></td>
+                            <td><p>{booking.order_date.toDateString()}</p></td>
                             <td>
-                                <p>{booking.check_in}</p>
+                                <p>{booking.check_in.toDateString()}</p>
                                 <p>9.46 PM</p>
                             </td>
                             <td>
-                                <p>{booking.check_out}</p>
+                                <p>{booking.check_out.toDateString()}</p>
                                 <p>6.12 PM</p>
                             </td>
                             <td>
                                 <ButtonStyled request="true">View Notes</ButtonStyled>
                             </td>
-                            <td><p>{booking.room_type.room_number}</p></td>
+                            <td><p>{booking.room_type.id}</p></td>
                             <td>
                                 <ButtonStyled status={booking.status}>{booking.status}</ButtonStyled>
                             </td>
