@@ -2,9 +2,9 @@ import { LoginPageStyled } from "./LoginPageStyled"
 import logo from './../../assets/logo.png'
 import { InputStyled } from "../../components/InputStyled"
 import { ButtonStyled } from "../../components/ButtonStyled"
-import userAdmin from '../../data/user.json'
 import { FormEvent, useEffect, useState } from "react"
 import { NavigateFunction, useNavigate } from "react-router-dom"
+
 
 interface UserInterface {
     user: string
@@ -14,28 +14,52 @@ interface UserInterface {
 export const LoginPage = () => {
 
     const navigate : NavigateFunction = useNavigate()
-    const [user,setUser] = useState<UserInterface>({
-        user: '',
-        password: ''
-    })
+    const [user,setUser] = useState<UserInterface>()
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const login = async () => {
+
+        await fetch(import.meta.env.VITE_APIURL + 'login',{
+
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        }).then(async (response) => {
+
+            const data = await response.json()
+
+            if(!response.ok){
+
+                throw new Error(data.message)
+            }
+            else {
+                localStorage.setItem('loginSession',JSON.stringify(data))
+                return navigate('/')
+            }            
+        }).catch((error: Error) => {
+            console.error(error)
+        })
+    }
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault()
         const form = event.target as HTMLFormElement
         setUser({
             user: form.user.value,
             password: form.password.value
-        })        
+        })
+        
+        
         
         
     }
 
     useEffect(() => {
-       
-        if(user.user === userAdmin.user && user.password === userAdmin.password || localStorage.getItem('loginSession') !== null){
-            localStorage.setItem('loginSession',JSON.stringify(user))
-            return navigate('/')
+        
+        if(user !== undefined){
+            login()
         }
         
     },[user])
