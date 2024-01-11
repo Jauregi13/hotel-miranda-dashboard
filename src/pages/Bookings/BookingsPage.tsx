@@ -182,7 +182,7 @@ export const BookingsPage = () => {
                     {
                         bookingsList.map((booking) => (
 
-                        <tr key={booking.id} onClick={() => navigate(`/bookings/${booking.id}`)}>
+                        <tr key={booking.id}>
                             <td>
                                 <ImageWithName src={guestImage} name={booking.guest} id={booking.id} type="booking"/>
                             </td>
