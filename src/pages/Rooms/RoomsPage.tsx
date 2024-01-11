@@ -10,7 +10,7 @@ import { SelectStyled } from "../../components/SelectStyled"
 import { RoomsPageStyled } from "./RoomsPageStyled"
 import roomImage from './../../assets/hotel-room.jpg'
 import { useEffect, useState } from "react"
-import { getAllRoomsData, getRoomsStatus } from "../../features/rooms/roomsSlice"
+import { getAllRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { getRoomsThunk } from "../../features/rooms/roomsThunk"
 import { RoomInterface } from "../../interfaces/Room/RoomInterface"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
@@ -22,12 +22,13 @@ export const RoomsPage = () => {
     const dispatch = useAppDispatch()
     const roomsStatus = useAppSelector<StatusSlice>(getRoomsStatus)
     const roomsAll = useAppSelector<RoomInterface[]>(getAllRoomsData)
+    const roomsError = useAppSelector<string | undefined>(getRoomsError)
     const [roomList,setRoomList] = useState<RoomInterface[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const [orderValue,setOrderValue] = useState<string>('id')
 
     useEffect(() => {
-
+        console.log(roomsStatus);
         switch (roomsStatus) {
             case 'idle':
                 dispatch(getRoomsThunk())
@@ -40,10 +41,15 @@ export const RoomsPage = () => {
         
             case 'rejected':
                 setLoading(false)
+                
+                
+                console.log(roomsError);
+                
                 break;
             
             case 'fulfilled':
-
+                console.log(roomsAll);
+                
                 setRoomList(roomsAll)
                 setLoading(false)
 
@@ -191,16 +197,16 @@ export const RoomsPage = () => {
                     {
                         roomList.map((room: RoomInterface) => (
 
-                            <tr key={room.id}>
-                                <td><RoomName id={room.id} number={room.number} image={roomImage}/></td>
-                                <td><p>{room.type}</p></td>
+                            <tr key={room.roomId}>
+                                <td><RoomName id={room.roomId} number={room.room_number} image={roomImage}/></td>
+                                <td><p>{room.room_type}</p></td>
                                 <td><p>
                                         {room.amenities.join(', ')}
                                     </p>
                                 </td>
                                 <td><p>${room.price}/night</p></td>
                                 <td><p>${(room.price - (room.price * room.offer/100)).toFixed(2)}/night</p></td>
-                                <td><ButtonStyled status={room.status}>{room.status}</ButtonStyled></td>
+                                <td><ButtonStyled status={room.available ? 'Available': 'Booked'}>{room.available ? 'Available' : 'Booked'}</ButtonStyled></td>
                             </tr>
                         ))
                         

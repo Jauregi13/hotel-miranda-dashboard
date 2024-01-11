@@ -34,7 +34,9 @@ export const LoginPage = () => {
                 throw new Error(data.message)
             }
             else {
-                localStorage.setItem('loginSession',JSON.stringify(data))
+                console.log(data.userToken);
+                
+                localStorage.setItem('loginToken',data.userToken)
                 return navigate('/')
             }            
         }).catch((error: Error) => {

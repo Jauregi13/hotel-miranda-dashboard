@@ -30,7 +30,8 @@ export const BookingsPage = () => {
     const [bookingsList,setBookingsList] = useState<BookingInterface[]>([])
     const [tabActive, setTabActive] = useState<string>('all')
     const [orderValue, setOrderValue] = useState<string>('order_date')
-
+    const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric'}
+    const timeOptions : Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: true}
     useEffect(() => {
 
         switch (bookingsStatus) {
@@ -54,7 +55,7 @@ export const BookingsPage = () => {
 
                 setLoading(false)
                 setBookingsList(bookings)
-                console.log(bookings);
+                console.log(new Date(bookings[0].order_date).toLocaleString('en-UK', dateOptions));
                 break;
         }
 
@@ -184,14 +185,14 @@ export const BookingsPage = () => {
                             <td>
                                 <ImageWithName src={guestImage} name={booking.guest} id={booking.id} type="booking"/>
                             </td>
-                            <td><p>{booking.order_date.toDateString()}</p></td>
+                            <td><p>{new Date(booking.order_date).toLocaleString('en-UK',dateOptions)}</p></td>
                             <td>
-                                <p>{booking.check_in.toDateString()}</p>
-                                <p>9.46 PM</p>
+                                <p>{new Date(booking.check_in).toLocaleString('en-UK',dateOptions)}</p>
+                                <p>{new Date(booking.check_in).toLocaleTimeString('en-UK', timeOptions)}</p>
                             </td>
                             <td>
-                                <p>{booking.check_out.toDateString()}</p>
-                                <p>6.12 PM</p>
+                                <p>{new Date(booking.check_out).toLocaleString('en-UK',dateOptions)}</p>
+                                <p>{new Date(booking.check_out).toLocaleTimeString('en-UK',timeOptions)}</p>
                             </td>
                             <td>
                                 <ButtonStyled request="true">View Notes</ButtonStyled>
