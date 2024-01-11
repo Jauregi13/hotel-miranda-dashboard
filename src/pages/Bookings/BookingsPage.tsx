@@ -16,6 +16,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { BookingInterface } from "../../interfaces/Booking/BookingInterface"
 import { StatusSlice } from "../../interfaces/types"
+import { ButtonEditDelete } from "../../components/ButtonEditDelete/ButtonEditDelete"
 
 
 
@@ -200,6 +201,9 @@ export const BookingsPage = () => {
                             <td><p>{booking.room_type.id}</p></td>
                             <td>
                                 <ButtonStyled status={booking.status}>{booking.status}</ButtonStyled>
+                            </td>
+                            <td>
+                                <ButtonEditDelete />
                             </td>
                         </tr>
 
