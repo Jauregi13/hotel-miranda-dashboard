@@ -6,10 +6,12 @@ import { HiOutlinePuzzle } from "react-icons/hi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { TbLogout } from "react-icons/tb";
 import { GoBell } from "react-icons/go";
-import { MdOutlineMailOutline, MdOutlineLocalPhone } from "react-icons/md";
+import { MdOutlineMailOutline, MdOutlineLocalPhone, MdOutlineEdit, MdDelete } from "react-icons/md";
 import { LiaBedSolid } from "react-icons/lia";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { ImCancelCircle } from "react-icons/im";
+import { SlOptionsVertical } from "react-icons/sl";
+
 
 const iconStyle = `
 
@@ -93,4 +95,22 @@ export const PhoneIcon = styled(MdOutlineLocalPhone)`
 
     width: 20px;
     height: 20px;
+`
+
+export const OptionsIcon = styled(SlOptionsVertical)`
+
+    ${iconStyle}
+    color: #6E6E6E;
+
+`
+
+export const EditIcon = styled(MdOutlineEdit)`
+
+    ${iconStyle}
+`
+
+export const DeleteIcon = styled(MdDelete)`
+
+    ${iconStyle}
+    color: #E23428;
 `

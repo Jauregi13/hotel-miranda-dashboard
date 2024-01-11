@@ -11,11 +11,11 @@ export const Layout = () => {
     const navigate : NavigateFunction = useNavigate();
     const [title,setTitle] = useState<string>('Dashboard');
     const {isOpen} = useMenuOpenContext();
-    const [user,setUser] = useState(localStorage.getItem('loginSession'));
+    const [userToken] = useState(localStorage.getItem('loginToken'));
 
     useEffect(() => {
 
-        if(user != null){
+        if(userToken != null){
 
             switch (location.pathname) {
                 case '/':
@@ -58,7 +58,7 @@ export const Layout = () => {
 
         
 
-    },[location.pathname,user])
+    },[location.pathname,userToken])
 
 
     
