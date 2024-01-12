@@ -8,7 +8,6 @@ import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
 import { BookingsPageStyled } from "./BookingsPageStyled"
-import guestImage from './../../assets/founder.png'
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
 import { useEffect, useState } from "react"
 import { getBookingsThunk } from "../../features/bookings/bookingsThunk"
@@ -32,7 +31,8 @@ export const BookingsPage = () => {
     const [orderValue, setOrderValue] = useState<string>('order_date')
     const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric'}
     const timeOptions : Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: true}
-    useEffect(() => {
+
+    useEffect(() => {        
 
         switch (bookingsStatus) {
             case 'idle':
@@ -47,7 +47,7 @@ export const BookingsPage = () => {
                 break;
 
             case 'rejected':
-
+                
                 setLoading(false)
                 break;
             
@@ -55,7 +55,7 @@ export const BookingsPage = () => {
 
                 setLoading(false)
                 setBookingsList(bookings)
-                console.log(new Date(bookings[0].order_date).toLocaleString('en-UK', dateOptions));
+                console.log(bookings);
                 break;
         }
 
@@ -128,8 +128,6 @@ export const BookingsPage = () => {
 
         setBookingsList(orderBookingList)
 
-
-
     }
 
     const handleOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -181,11 +179,12 @@ export const BookingsPage = () => {
                     {
                         bookingsList.map((booking) => (
 
-                        <tr key={booking.id} onClick={() => navigate(`/bookings/${booking.id}`)}>
+                        <tr key={booking.bookingId} onClick={() => navigate(`/bookings/${booking.id}`)}>
                             <td>
-                                <ImageWithName src={guestImage} name={booking.guest} id={booking.id} type="booking"/>
+                                <ImageWithName src={booking.guestImage} name={booking.guest} id={booking.bookingId} type="booking"/>
                             </td>
-                            <td><p>{new Date(booking.order_date).toLocaleString('en-UK',dateOptions)}</p></td>
+                            <td><p>{new Date(booking.order_date).toLocaleString('en-UK',dateOptions) + ' ' +
+                            new Date(booking.order_date).toLocaleTimeString('en-UK',timeOptions)}</p></td>
                             <td>
                                 <p>{new Date(booking.check_in).toLocaleString('en-UK',dateOptions)}</p>
                                 <p>{new Date(booking.check_in).toLocaleTimeString('en-UK', timeOptions)}</p>
@@ -197,7 +196,7 @@ export const BookingsPage = () => {
                             <td>
                                 <ButtonStyled request="true">View Notes</ButtonStyled>
                             </td>
-                            <td><p>{booking.room_type.id}</p></td>
+                            <td><p>{booking.room.room_type}</p></td>
                             <td>
                                 <ButtonStyled status={booking.status}>{booking.status}</ButtonStyled>
                             </td>
