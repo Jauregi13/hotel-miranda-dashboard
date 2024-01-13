@@ -50,7 +50,8 @@ export const UsersPage = () => {
 
 
             case 'fulfilled':
-
+                console.log(employees);
+                
                 setEmployeesList(employees);
                 handleOrderEmployee(orderValue,employees)
                 setLoading(false);

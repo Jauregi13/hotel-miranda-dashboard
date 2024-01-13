@@ -8,9 +8,35 @@ import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWith
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { SelectStyled } from "../../components/SelectStyled"
+import { useEffect, useMemo, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { getContactsData, getContactsStatus } from "../../features/contacts/ContactSlice"
+import { ContactInterface } from "../../interfaces/Contact/ContactInterface"
+import { StatusSlice } from "../../interfaces/types"
+import { getContactsThunk } from "../../features/contacts/ContactThunks"
 
 
 export const ContactPage = () =>  {
+
+    const dispatch = useAppDispatch()
+    const contacts = useAppSelector<ContactInterface[]>(getContactsData)
+    const contactsStatus = useAppSelector<StatusSlice>(getContactsStatus)
+    const [contactsList,setContactList] = useState<ContactInterface[]>([])
+
+    useEffect(() => {
+
+        if(contactsStatus == 'idle'){
+            dispatch(getContactsThunk())
+        }
+
+
+    },[])
+
+    useMemo(() => {
+
+        setContactList(contacts)
+
+    },[contacts])
 
 
     return (
@@ -51,43 +77,34 @@ export const ContactPage = () =>  {
                         
                     </TheadStyled>
                     <TBodyStyled>
-                        <tr>
-                            <td>
-                                <p>#000123456</p>
-                                <p>Nov 21th 2020 09:21 AM</p>
-                            </td>
-                            <td>
-                                <p>James Sitepu</p>
-                                <p>jauregi.developer@gmail.com</p>
-                                <p>012 334 55512</p>
-                            </td>
-                            <td className="contact-comment">
-                                <p>We recently had dinner with friends at Dimas Can Zheng and we all walked away with a great experience. Good food, pleasant environment, personal attention through all the evening. Thanks to the team and we will be back</p>
-                            </td>
-                            <td>
-                               <ButtonStyled status="archive">Archive</ButtonStyled> 
-                            </td>
 
-                        </tr>
+                        {
+                            contactsList.map((contact) => (
 
-                        <tr>
-                            <td>
-                                <p>#000123456</p>
-                                <p>Nov 21th 2020 09:21 AM</p>
-                            </td>
-                            <td>
-                                <p>James Sitepu</p>
-                                <p>jauregi.developer@gmail.com</p>
-                                <p>012 334 55512</p>
-                            </td>
-                            <td className="contact-comment">
-                                <p>We recently had dinner with friends at Dimas Can Zheng and we all walked away with a great experience. Good food, pleasant environment, personal attention through all the evening. Thanks to the team and we will be back</p>
-                            </td>
-                            <td>
-                               <ButtonStyled status="archive">Archive</ButtonStyled> 
-                            </td>
+                                <tr>
+                                    <td>
+                                        <p>#{contact.reviewId}</p>
+                                        <p>Nov 21th 2020 09:21 AM</p>
+                                    </td>
+                                    <td>
+                                        <p>{contact.customer}</p>
+                                        <p>{contact.email}</p>
+                                        <p>{contact.phone}</p>
+                                    </td>
+                                    <td className="contact-comment">
+                                        <p>{contact.subject}</p>
+                                        <p>{contact.comment}</p>
+                                    </td>
+                                    <td>
+                                       {!contact.published && <ButtonStyled status="archive">Archive</ButtonStyled> } 
+                                    </td>
 
-                        </tr>
+                                </tr>
+
+
+
+                            ))
+                        }
                     </TBodyStyled>
                 
                 </TableStyled>
