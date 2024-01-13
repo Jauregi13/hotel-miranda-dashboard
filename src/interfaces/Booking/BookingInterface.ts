@@ -1,18 +1,19 @@
 import { Status } from "../types"
 
 interface RoomId {
-    id: string
+    room_type: string
 }
 
 export interface BookingInterface {
 
-    id: string
+    bookingId: string
     guest: string
+    guestImage: string
     order_date: Date
     check_in: Date
     check_out: Date
     special_request: string
-    room_type: RoomId
+    room: RoomId
     status: Status.check_in | Status.check_out | Status.in_progress
     [key: string] : string | Date | RoomId
 

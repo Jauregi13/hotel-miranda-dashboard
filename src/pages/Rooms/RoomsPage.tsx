@@ -70,10 +70,10 @@ export const RoomsPage = () => {
             roomsFilter = roomsAll;
         }
         else if(type === 'available'){
-            roomsFilter = roomsAll.filter((room: RoomInterface) => room.status === 'Available');
+            roomsFilter = roomsAll.filter((room: RoomInterface) => room.available);
         }
         else if(type === 'booked'){
-            roomsFilter = roomsAll.filter((room: RoomInterface) => room.status === 'Booked');
+            roomsFilter = roomsAll.filter((room: RoomInterface) => !room.available);
         }
 
         setRoomList(roomsFilter);
@@ -94,8 +94,8 @@ export const RoomsPage = () => {
 
                 orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
-                    let firstId = parseInt(a.id.substring(1,a.id.length));
-                    let secondId = parseInt(b.id.substring(1,b.id.length));
+                    let firstId = parseInt(a.roomId);
+                    let secondId = parseInt(b.roomId);
 
                    return firstId-secondId;
                 })
@@ -106,10 +106,10 @@ export const RoomsPage = () => {
 
                 orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
-                    if(a.status === 'Available' && b.status !== 'Available'){
+                    if(a.available && !b.available){
                         return -1;
                     }
-                    else if(b.status === 'Available' && a.status !== 'Available'){
+                    else if(b.available && !a.available){
                         return 1;
                     }
                     return 0;
@@ -121,10 +121,10 @@ export const RoomsPage = () => {
 
                 orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
-                    if(a.status === 'Booked' && b.status !== 'Booked'){
+                    if(!a.available && b.available){
                         return -1;
                     }
-                    else if(b.status === 'Booked' && a.status !== 'Booked'){
+                    else if(!b.available && a.available){
                         return 1;
                     }
                     return 0;
