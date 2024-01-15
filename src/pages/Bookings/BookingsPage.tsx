@@ -11,7 +11,6 @@ import { BookingsPageStyled } from "./BookingsPageStyled"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
 import { useEffect, useState } from "react"
 import { getBookingsThunk } from "../../features/bookings/bookingsThunk"
-import { NavigateFunction, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { BookingInterface } from "../../interfaces/Booking/BookingInterface"
 import { StatusSlice } from "../../interfaces/types"
@@ -22,7 +21,6 @@ import { ButtonEditDelete } from "../../components/ButtonEditDelete/ButtonEditDe
 export const BookingsPage = () => {
 
     const dispatch = useAppDispatch()
-    const navigate: NavigateFunction = useNavigate()
     const bookings = useAppSelector<BookingInterface[]>(getBookingsData)
     const bookingsStatus = useAppSelector<StatusSlice>(getBookingsStatus)
     const bookingsError = useAppSelector(getBookingsError)
@@ -203,7 +201,7 @@ export const BookingsPage = () => {
                                 <ButtonStyled status={booking.status}>{booking.status}</ButtonStyled>
                             </td>
                             <td>
-                                <ButtonEditDelete />
+                                <ButtonEditDelete id={booking.bookingId}/>
                             </td>
                         </tr>
 

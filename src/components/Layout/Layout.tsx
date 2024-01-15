@@ -14,42 +14,46 @@ export const Layout = () => {
     const [userToken] = useState(localStorage.getItem('loginToken'));
 
     useEffect(() => {
-
+        
+        console.log(/^\/bookings\/\d+$/.test(location.pathname));
+        console.log(location.pathname);
+        
+        
         if(userToken != null){
 
-            switch (location.pathname) {
-                case '/':
-                    
-                    setTitle('Dashboard');
-                    break;
-                
-                case '/rooms':
-        
-                    setTitle('Room List');
-                    break;
-                
-                case '/bookings':
-        
-                    setTitle('Guest List');
-                    break;
-                
-                case '/bookings/:id':
-
-                    setTitle('Guest Details');
-                    break;
-    
-                case '/contact':
-    
-                    setTitle('Reviews');
-                    break;
-                
-                case '/users':
-    
-                    setTitle('Concierge List');
-                    break;
-                default:
-                    break;
+            if(/^\/bookings\/\d+$/.test(location.pathname)){
+                setTitle('Guest Details');
             }
+            else {
+                switch (location.pathname) {
+                    case '/':
+                        
+                        setTitle('Dashboard');
+                        break;
+                    
+                    case '/rooms':
+            
+                        setTitle('Room List');
+                        break;
+                    
+                    case '/bookings':  
+                        
+                        setTitle('Guest List');
+                        break;
+                    
+                    case '/contact':
+        
+                        setTitle('Reviews');
+                        break;
+                    
+                    case '/users':
+        
+                        setTitle('Concierge List');
+                        break;
+                }
+            }
+
+            
         }
 
         else {
