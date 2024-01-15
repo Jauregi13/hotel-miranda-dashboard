@@ -32,10 +32,11 @@ export const ButtonEditDeleteStyled = styled.div`
         
         
 
-        & li {
+        & li a{
             display: flex;
             align-items: center;
             width: 100%;
+            color: #000000;
 
             & p {
                 margin-left: 0.5em;

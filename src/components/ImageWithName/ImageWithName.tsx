@@ -20,7 +20,7 @@ export const ImageWithName = (props: ImageWithNameProps) => {
             <img src={props.src} alt="Person name" />
             <div className="person-info">
                 <p>{props.name}</p>
-                <p>{props.id}</p>
+                <p>#{props.id}</p>
                 {
                     props.type === 'user' && 
                     

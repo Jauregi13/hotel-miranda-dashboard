@@ -4,9 +4,10 @@ import { BookingInterface } from "../../interfaces/Booking/BookingInterface";
 
 
 export const getBookingsThunk = createAsyncThunk<BookingInterface[], void>('bookings/getBookings', async () => {
-    
+
+
     const response = await fetch(import.meta.env.VITE_APIURL + 'bookings', {
-        
+    
         method: 'GET',
         headers: {
             "Authorization": `Bearer ${localStorage.getItem('loginToken')}`,
@@ -14,6 +15,6 @@ export const getBookingsThunk = createAsyncThunk<BookingInterface[], void>('book
         }
     })
 
-    return response.json()
+    return response.json()    
 
 })

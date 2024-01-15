@@ -11,6 +11,8 @@ import { LiaBedSolid } from "react-icons/lia";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { ImCancelCircle } from "react-icons/im";
 import { SlOptionsVertical } from "react-icons/sl";
+import { IoMdEye, IoIosArrowRoundBack } from "react-icons/io";
+
 
 
 const iconStyle = `
@@ -53,6 +55,10 @@ export const MenuIcon = styled(HiMenuAlt2)`
 
     ${iconStyle}
 
+`
+export const GoBackIcon = styled(IoIosArrowRoundBack)`
+
+    ${iconStyle}
 `
 
 export const LogoutIcon = styled(TbLogout)`
@@ -113,4 +119,9 @@ export const DeleteIcon = styled(MdDelete)`
 
     ${iconStyle}
     color: #E23428;
+`
+
+export const InfoIcon = styled(IoMdEye)`
+
+    ${iconStyle}
 `

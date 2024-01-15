@@ -25,7 +25,8 @@ export const RoomsPage = () => {
     const roomsError = useAppSelector<string | undefined>(getRoomsError)
     const [roomList,setRoomList] = useState<RoomInterface[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const [orderValue,setOrderValue] = useState<string>('id')
+    const [orderValue,setOrderValue] = useState<string>('room_number')
+    const [tabActive, setTabActive] = useState('all')
 
     useEffect(() => {
         console.log(roomsStatus);
@@ -51,6 +52,7 @@ export const RoomsPage = () => {
                 console.log(roomsAll);
                 
                 setRoomList(roomsAll)
+                handleOrderRoom(roomsAll,orderValue)
                 setLoading(false)
 
                 break;
@@ -64,38 +66,42 @@ export const RoomsPage = () => {
     const handleFilter = (type: string) => {
 
         let roomsFilter : RoomInterface[] = [];
-        setOrderValue('id');
 
         if(type === 'all'){
             roomsFilter = roomsAll;
         }
         else if(type === 'available'){
-            roomsFilter = roomsAll.filter((room: RoomInterface) => room.status === 'Available');
+            roomsFilter = roomsAll.filter((room: RoomInterface) => room.available);
         }
         else if(type === 'booked'){
-            roomsFilter = roomsAll.filter((room: RoomInterface) => room.status === 'Booked');
+            roomsFilter = roomsAll.filter((room: RoomInterface) => !room.available);
         }
 
         setRoomList(roomsFilter);
-
+        setTabActive(type)
+        handleOrderRoom(roomsFilter, 'room_number')
         
     }
 
-    const handleOrderRoom = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
-        console.log('ordenado');
+        handleOrderRoom(roomList,event.target.value)
+
+    }
+
+    const handleOrderRoom = (roomList: RoomInterface[], orderType: string) => {
 
         const orderList = [...roomList]
-        setOrderValue(event.target.value)
+        setOrderValue(orderType)
 
-        switch (event.target.value) {
+        switch (orderType) {
 
-            case 'id':
+            case 'room_number':
 
                 orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
-                    let firstId = parseInt(a.id.substring(1,a.id.length));
-                    let secondId = parseInt(b.id.substring(1,b.id.length));
+                    let firstId = parseInt(a.room_number);
+                    let secondId = parseInt(b.room_number);
 
                    return firstId-secondId;
                 })
@@ -106,10 +112,10 @@ export const RoomsPage = () => {
 
                 orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
-                    if(a.status === 'Available' && b.status !== 'Available'){
+                    if(a.available && !b.available){
                         return -1;
                     }
-                    else if(b.status === 'Available' && a.status !== 'Available'){
+                    else if(b.available && !a.available){
                         return 1;
                     }
                     return 0;
@@ -121,10 +127,10 @@ export const RoomsPage = () => {
 
                 orderList.sort((a: RoomInterface,b: RoomInterface) => {
 
-                    if(a.status === 'Booked' && b.status !== 'Booked'){
+                    if(!a.available && b.available){
                         return -1;
                     }
-                    else if(b.status === 'Booked' && a.status !== 'Booked'){
+                    else if(!b.available && a.available){
                         return 1;
                     }
                     return 0;
@@ -151,8 +157,6 @@ export const RoomsPage = () => {
 
         setRoomList(orderList);
 
-        
-
     }
 
     return (
@@ -162,14 +166,14 @@ export const RoomsPage = () => {
 
             <TabsWithOptionsStyled>
                 <TabsStyled>
-                    <li onClick={() => handleFilter('all')}>All Rooms</li>
-                    <li onClick={() => handleFilter('available')}>Available Rooms</li>
-                    <li onClick={() => handleFilter('booked')}>Booked Rooms</li>
+                    <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : undefined }>All Rooms</li>
+                    <li onClick={() => handleFilter('available')} className={tabActive === 'available' ? 'active' : undefined }>Available Rooms</li>
+                    <li onClick={() => handleFilter('booked')} className={tabActive === 'booked' ? 'active' : undefined }>Booked Rooms</li>
                 </TabsStyled>
                 <OptionsStyled>
                     <ButtonStyled status="create">+ New Room</ButtonStyled>
-                    <SelectStyled onChange={handleOrderRoom} value={orderValue}>
-                        <option value='id'>Id of Room</option>
+                    <SelectStyled onChange={handleOrderChange} value={orderValue}>
+                        <option value='room_number'>Room number</option>
                         <option value="available">Status Available</option>
                         <option value="booked">Status Booked</option>
                         <option value="lower">Lower Price</option>

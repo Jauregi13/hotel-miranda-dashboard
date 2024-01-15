@@ -26,6 +26,8 @@ export const UsersPage = () => {
     const [employeesList,setEmployeesList] = useState<EmployeeInterface[]>([]);
     const [orderValue,setOrderValue] = useState<string>('start_date')
     const [tabActive, setTabActive] = useState<string>('all')
+    const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric'}
+
 
     useEffect(() => {
 
@@ -48,7 +50,8 @@ export const UsersPage = () => {
 
 
             case 'fulfilled':
-
+                console.log(employees);
+                
                 setEmployeesList(employees);
                 handleOrderEmployee(orderValue,employees)
                 setLoading(false);
@@ -64,20 +67,18 @@ export const UsersPage = () => {
         let employeesFilter: EmployeeInterface[] = [];
 
         if(type === 'all'){
-            setTabActive('all')
             employeesFilter = employees;
         }
         else if(type === 'active'){
-            setTabActive('active')
-            employeesFilter = employees.filter((room) => room.status === Status.active);
+            employeesFilter = employees.filter((room) => room.active);
         }
         else if(type === 'inactive'){
-            setTabActive('inactive')
-            employeesFilter = employees.filter((room) => room.status === Status.inactive);
+            employeesFilter = employees.filter((room) => !room.active);
         }
 
         
         setEmployeesList(employeesFilter);
+        setTabActive(type)
         handleOrderEmployee('start_date',employeesFilter)
         
         
@@ -98,21 +99,14 @@ export const UsersPage = () => {
 
             orderList.sort((a,b) => {
 
-                if(b.start_date > a.start_date){
-                    return 1
-                }
-                else if(b.start_date < a.start_date){
-                    return -1
-                }
-
-                return 0
+                return new Date(a.start_date).getTime() - new Date(b.start_date).getTime()
 
             })
         }
         else if(orderValue === 'name'){
 
             orderList.sort((a,b) => {
-
+                
                 if(a.name > b.name){
                     return 1
                 }
@@ -173,14 +167,14 @@ export const UsersPage = () => {
                             {
                                 employeesList.map((employee) => (
 
-                                    <tr key={employee.id}>
+                                    <tr key={employee.userId}>
                                         <td>
-                                            <ImageWithName src="/src/assets/founder.png" 
+                                            <ImageWithName src={employee.userImage}
                                                 type="user" 
                                                 name={employee.name} 
-                                                id={employee.id} 
+                                                id={employee.userId} 
                                                 email={employee.email} 
-                                                start_date={employee.start_date.toDateString()} 
+                                                start_date={new Date(employee.start_date).toLocaleString('en-UK',dateOptions)} 
                                             />
                                         </td>
                                         <td>
@@ -194,7 +188,7 @@ export const UsersPage = () => {
                                         </td>
                                         <td>
                                             {
-                                                employee.status == 'ACTIVE' ? <ButtonStyled status="active">ACTIVE</ButtonStyled> 
+                                                employee.active ? <ButtonStyled status="active">ACTIVE</ButtonStyled> 
                                                 
                                                 : <ButtonStyled status="inactive">INACTIVE</ButtonStyled> 
                                             }

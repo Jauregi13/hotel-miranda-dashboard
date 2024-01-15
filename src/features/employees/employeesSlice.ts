@@ -37,6 +37,6 @@ export const EmployeesSlice = createSlice({
 
 })
 
-export const getEmployeesData = (state: RootState): EmployeeInterface[] => state.employees.data;
-export const getEmployeesStatus = (state: RootState) => state.employees.status;
-export const getEmployeesError = (state: RootState) => state.employees.error;
+export const getEmployeesData = (state: RootState) : EmployeeInterface[] => state.employees.data;
+export const getEmployeesStatus = (state: RootState) : StatusSlice => state.employees.status;
+export const getEmployeesError = (state: RootState) : String | undefined => state.employees.error;
