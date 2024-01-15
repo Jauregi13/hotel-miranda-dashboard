@@ -67,20 +67,18 @@ export const UsersPage = () => {
         let employeesFilter: EmployeeInterface[] = [];
 
         if(type === 'all'){
-            setTabActive('all')
             employeesFilter = employees;
         }
         else if(type === 'active'){
-            setTabActive('active')
             employeesFilter = employees.filter((room) => room.active);
         }
         else if(type === 'inactive'){
-            setTabActive('inactive')
             employeesFilter = employees.filter((room) => !room.active);
         }
 
         
         setEmployeesList(employeesFilter);
+        setTabActive(type)
         handleOrderEmployee('start_date',employeesFilter)
         
         
@@ -101,21 +99,14 @@ export const UsersPage = () => {
 
             orderList.sort((a,b) => {
 
-                if(b.start_date > a.start_date){
-                    return 1
-                }
-                else if(b.start_date < a.start_date){
-                    return -1
-                }
-
-                return 0
+                return new Date(a.start_date).getTime() - new Date(b.start_date).getTime()
 
             })
         }
         else if(orderValue === 'name'){
 
             orderList.sort((a,b) => {
-
+                
                 if(a.name > b.name){
                     return 1
                 }

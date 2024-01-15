@@ -22,6 +22,41 @@ export const ContactPage = () =>  {
     const contacts = useAppSelector<ContactInterface[]>(getContactsData)
     const contactsStatus = useAppSelector<StatusSlice>(getContactsStatus)
     const [contactsList,setContactList] = useState<ContactInterface[]>([])
+    const [tabActive, setTabActive] = useState<string>('all')
+    const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric'}
+    const timeOptions : Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: true}
+
+
+
+    const handleOrderContacts = (contactList: ContactInterface[]) => {
+
+        const orderContactList : ContactInterface[] = [...contactList]
+
+        orderContactList.sort((a: ContactInterface,b: ContactInterface) => {
+                        
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+            
+        })
+
+        setContactList(orderContactList)
+
+    }
+
+    const handleFilter = (type : string) => {
+
+        let contactsFilter : ContactInterface[] = [] 
+
+        if(type === 'archived'){
+            contactsFilter = contactsList.filter((contact) => !contact.published)
+        }
+        else {
+            contactsFilter = contacts
+        }
+        setTabActive(type)
+        setContactList(contactsFilter)
+        handleOrderContacts(contactsFilter)
+
+    }
 
     useEffect(() => {
 
@@ -35,8 +70,14 @@ export const ContactPage = () =>  {
     useMemo(() => {
 
         setContactList(contacts)
+        handleOrderContacts(contacts)
 
     },[contacts])
+
+
+    
+
+    
 
 
     return (
@@ -53,8 +94,8 @@ export const ContactPage = () =>  {
 
                 <TabsWithOptionsStyled>
                     <TabsStyled>
-                        <li>All Customer Reviews</li>
-                        <li>Archived</li>
+                        <li onClick={() => handleFilter('all')} className={tabActive === 'all' ? 'active' : undefined }>All Customer Reviews</li>
+                        <li onClick={() => handleFilter('archived')} className={tabActive === 'archived' ? 'active' : undefined }>Archived</li>
                     </TabsStyled>
                     <OptionsStyled>
                         <SelectStyled>
@@ -84,7 +125,7 @@ export const ContactPage = () =>  {
                                 <tr>
                                     <td>
                                         <p>#{contact.reviewId}</p>
-                                        <p>Nov 21th 2020 09:21 AM</p>
+                                        <p>{new Date(contact.date).toLocaleString('en-UK',dateOptions) + ' ' + new Date(contact.date).toLocaleTimeString('en-UK',timeOptions)}</p>
                                     </td>
                                     <td>
                                         <p>{contact.customer}</p>

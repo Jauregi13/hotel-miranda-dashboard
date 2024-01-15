@@ -54,7 +54,7 @@ export const BookingsPage = () => {
 
                 setLoading(false)
                 setBookingsList(bookings)
-                console.log(bookings);
+                handleOrderBookings(bookings,orderValue)
                 break;
         }
 
