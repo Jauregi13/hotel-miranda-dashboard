@@ -6,7 +6,7 @@ import { TheadStyled } from "../../components/Table/TheadStyled"
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
-import { SelectStyled } from "../../components/SelectStyled"
+import { SelectStyled } from "../../components/Inputs/SelectStyled"
 import { RoomsPageStyled } from "./RoomsPageStyled"
 import roomImage from './../../assets/hotel-room.jpg'
 import { useEffect, useState } from "react"

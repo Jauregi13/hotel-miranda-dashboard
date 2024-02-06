@@ -10,6 +10,7 @@ import { MenuOpenProvider } from './components/MenuOpenContext'
 import { UsersPage } from './pages/Users/UsersPage'
 import { LoginPage } from './pages/Login/LoginPage'
 import { GuestDetails } from './pages/GuestDetails/GuestDetails'
+import { BookingEditPage } from './pages/Bookings/BookingEditPage'
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
                 <Route path='/rooms' element={<RoomsPage />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
                 <Route path='/bookings/:id' element={<GuestDetails />} />
+                <Route path='/bookings/:id/edit' element={<BookingEditPage />} />
                 <Route path='/contact' element={<ContactPage />}/>
                 <Route path='/users' element={<UsersPage />}/>
               </Route>

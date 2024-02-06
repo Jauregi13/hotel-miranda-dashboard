@@ -71,6 +71,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
                   `
             case 'login':
             case 'create':
+            case 'update':
                 return `
                     color: #FFFFFF;
                     font-weight: 600;

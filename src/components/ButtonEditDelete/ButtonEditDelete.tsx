@@ -4,13 +4,15 @@ import { ButtonEditDeleteStyled } from "./ButtonEditDeleteStyled"
 import { Link } from "react-router-dom"
 import { useOnClickOutside } from "usehooks-ts"
 
-interface PropBookingId {
+interface PropEditDelete {
 
     id: string
+    type: string
+
 }
 
 
-export const ButtonEditDelete = (props: PropBookingId) => {
+export const ButtonEditDelete = (props: PropEditDelete) => {
 
     const [optionsActive, setOptionsActive] = useState(false)
     const optionsContentRef = useRef<HTMLDivElement>(null)
@@ -37,7 +39,7 @@ export const ButtonEditDelete = (props: PropBookingId) => {
                 <div className={optionsActive ? "options-content active" : "options-content"} ref={optionsContentRef}>
                     <ul>
                         <li>
-                            <Link to={'/bookings'}>
+                            <Link to={`/${props.type}/${props.id}/edit`}>
                                 <EditIcon /> <p>Edit</p>
                             </Link>
                             
@@ -49,7 +51,7 @@ export const ButtonEditDelete = (props: PropBookingId) => {
                             
                         </li>
                         <li>
-                            <Link to={`/bookings/${props.id}`}>
+                            <Link to={`/${props.type}/${props.id}`}>
                                 <InfoIcon/> <p>Info</p>
                             </Link>
                             

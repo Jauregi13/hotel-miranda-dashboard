@@ -7,6 +7,7 @@ export const InputStyled = styled.div`
 
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.5em;
 
     & label {
         font-family: 'Poppins';
@@ -14,17 +15,25 @@ export const InputStyled = styled.div`
         font-weight: 600;
         text-align: start;
         margin-bottom: 0.5em;
-        margin-top: 0.5em;
     }
 
     & input {
         font-size: 1em;
-        width: 98%;
+        width: 100%;
         border: none;
         border-bottom: 2px solid #135846;
     }
 
     & input:focus {
+        outline: none;
+    }
+
+    & textarea {
+        border: none;
+        border-bottom: 2px solid #135846;
+    }
+
+    & textarea:focus {
         outline: none;
     }
 

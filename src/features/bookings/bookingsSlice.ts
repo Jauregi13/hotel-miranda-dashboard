@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBookingsThunk } from "./bookingsThunk";
+import { getBookingByIdThunk, getBookingsThunk } from "./bookingsThunk";
 import { BookingSliceInterface } from "../../interfaces/Booking/BookingSliceInterface";
 import { StatusSlice } from "../../interfaces/types";
 import { BookingInterface } from "../../interfaces/Booking/BookingInterface";
@@ -21,10 +21,10 @@ export const BookingsSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        getBookingById: (state,action) => {
+        clearBooking: (state) => {
 
-            state.actualBooking = state.data.find((booking) => booking.id === action.payload)
-            
+            state.status = StatusSlice.idle
+            state.actualBooking = undefined
         }
 
     },
@@ -42,10 +42,27 @@ export const BookingsSlice = createSlice({
             state.status = StatusSlice.fulfilled
             state.data = action.payload
         })
+
+        builder.addCase(getBookingByIdThunk.pending, (state,action) => {
+            
+            state.status = StatusSlice.pending
+        })
+        .addCase(getBookingByIdThunk.rejected, (state,action) => {
+
+            state.status = StatusSlice.rejected
+            state.error = action.error.message
+        })
+        .addCase(getBookingByIdThunk.fulfilled, (state,action) => {
+
+            state.status = StatusSlice.fulfilled
+            state.actualBooking = action.payload
+        })
     }
 
 })
 
 export const getBookingsData = (state: RootState): BookingInterface[] => state.bookings.data
+export const getBookingData = (state: RootState): BookingInterface | undefined => state.bookings.actualBooking
 export const getBookingsStatus = (state: RootState) => state.bookings.status
 export const getBookingsError = (state: RootState) => state.bookings.error
+export const {clearBooking } = BookingsSlice.actions

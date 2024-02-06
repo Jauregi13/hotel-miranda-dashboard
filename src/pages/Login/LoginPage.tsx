@@ -1,6 +1,6 @@
 import { LoginPageStyled } from "./LoginPageStyled"
 import logo from './../../assets/logo.png'
-import { InputStyled } from "../../components/InputStyled"
+import { InputStyled } from "../../components/Inputs/InputStyled"
 import { ButtonStyled } from "../../components/ButtonStyled"
 import { FormEvent, useEffect, useState } from "react"
 import { NavigateFunction, useNavigate } from "react-router-dom"

@@ -15,14 +15,16 @@ export const Layout = () => {
 
     useEffect(() => {
         
-        console.log(/^\/bookings\/\d+$/.test(location.pathname));
-        console.log(location.pathname);
-        
         
         if(userToken != null){
 
+            const url = location.pathname.split('/')            
+
             if(/^\/bookings\/\d+$/.test(location.pathname)){
                 setTitle('Guest Details');
+            }
+            else if(url.length === 4 && url[3] === 'edit'){
+                setTitle('Edition')
             }
             else {
                 switch (location.pathname) {

@@ -1,6 +1,6 @@
 import { ButtonStyled } from "../../components/ButtonStyled"
 import { ImageWithName } from "../../components/ImageWithName/ImageWithName"
-import { SelectStyled } from "../../components/SelectStyled"
+import { SelectStyled } from "../../components/Inputs/SelectStyled"
 import { TableStyled } from "../../components/Table/TableStyled"
 import { TBodyStyled } from "../../components/Table/TbodyStyled"
 import { TheadStyled } from "../../components/Table/TheadStyled"
@@ -201,7 +201,7 @@ export const BookingsPage = () => {
                                 <ButtonStyled status={booking.status}>{booking.status}</ButtonStyled>
                             </td>
                             <td>
-                                <ButtonEditDelete id={booking.bookingId}/>
+                                <ButtonEditDelete id={booking.bookingId} type="bookings"/>
                             </td>
                         </tr>
 

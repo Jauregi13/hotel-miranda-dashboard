@@ -18,3 +18,35 @@ export const getBookingsThunk = createAsyncThunk<BookingInterface[], void>('book
     return response.json()    
 
 })
+
+export const getBookingByIdThunk = createAsyncThunk<BookingInterface, string>('bookings/getBookingById', async (id) => {
+
+
+    const response = await fetch(import.meta.env.VITE_APIURL + 'bookings/'+id, {
+    
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem('loginToken')}`,
+            "Content-Type": "application/json"
+        }
+    })    
+
+    return response.json() 
+
+})
+
+export const updateBooking = createAsyncThunk<string, BookingInterface>('bookings/updateBooking', async (booking) => {
+
+    const response = await fetch(import.meta.env.VITE_APIURL + 'bookings/', {
+    
+        method: 'PUT',
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem('loginToken')}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(booking)
+    }) 
+
+    return response.json()
+})
+

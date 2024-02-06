@@ -7,7 +7,7 @@ import { ButtonStyled } from "../../components/ButtonStyled"
 import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
-import { SelectStyled } from "../../components/SelectStyled"
+import { SelectStyled } from "../../components/Inputs/SelectStyled"
 import { useEffect, useMemo, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { getContactsData, getContactsStatus } from "../../features/contacts/ContactSlice"
@@ -71,7 +71,8 @@ export const ContactPage = () =>  {
 
         setContactList(contacts)
         handleOrderContacts(contacts)
-
+        console.log(contacts);
+        
     },[contacts])
 
 
