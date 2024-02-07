@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BookingInterface } from "../../interfaces/Booking/BookingInterface";
+import { BookingInterface, BookingUpdateInterface } from "../../interfaces/Booking/BookingInterface";
 
 
 
@@ -15,7 +15,7 @@ export const getBookingsThunk = createAsyncThunk<BookingInterface[], void>('book
         }
     })
 
-    return response.json()    
+    return response.json()
 
 })
 
@@ -35,11 +35,11 @@ export const getBookingByIdThunk = createAsyncThunk<BookingInterface, string>('b
 
 })
 
-export const updateBooking = createAsyncThunk<string, BookingInterface>('bookings/updateBooking', async (booking) => {
+export const updateBooking = createAsyncThunk<string, BookingUpdateInterface>('bookings/updateBooking', async (booking) => {
 
-    const response = await fetch(import.meta.env.VITE_APIURL + 'bookings/', {
+    const response = await fetch(import.meta.env.VITE_APIURL+ 'bookings', {
     
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             "Authorization": `Bearer ${localStorage.getItem('loginToken')}`,
             "Content-Type": "application/json"

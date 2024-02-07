@@ -4,8 +4,8 @@ import { Styledh1 } from "../../components/headings"
 import { BookingsEditPageStyled } from "./BookingsEditPageStyled"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useParams } from "react-router"
-import { getBookingByIdThunk } from "../../features/bookings/bookingsThunk"
-import { clearBooking, getBookingData, getBookingsStatus } from "../../features/bookings/bookingsSlice"
+import { getBookingByIdThunk, updateBooking } from "../../features/bookings/bookingsThunk"
+import { bookingIsupdated, clearBooking, getBookingData, getBookingsStatus } from "../../features/bookings/bookingsSlice"
 import { BookingInterface } from "../../interfaces/Booking/BookingInterface"
 import { StatusSlice } from "../../interfaces/types"
 import { ButtonStyled } from "../../components/ButtonStyled"
@@ -51,21 +51,17 @@ export const BookingEditPage = () => {
         const formBooking = event.target as HTMLFormElement
         
         const booking = {
-            bookingId: id,
+            bookingId: id ?? '',
             guest: formBooking.guest_name.value,
-            guestImage: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/556.jpg',
             order_date: formBooking.order_date.value,
             check_in: formBooking.check_in.value,
             check_out: formBooking.check_out.value,
             special_request: formBooking.special_request.value,
-            status: 'Check In'
+            status: formBooking.status.value
         }
 
-        console.log(booking);
-        
-
-        
-        
+        dispatch(updateBooking(booking))   
+        dispatch(bookingIsupdated())     
     }
 
 
@@ -93,15 +89,15 @@ export const BookingEditPage = () => {
                 <Select value={booking?.status} label="Status" name="status" 
                         options={[
                             {
-                                value: 'Check_in',
+                                value: 'Check In',
                                 name: 'Check In'
                             },
                             {
-                                value: 'check_out',
+                                value: 'Check Out',
                                 name: 'Check Out'
                             },
                             {
-                                value: 'in_progress',
+                                value: 'In Progress',
                                 name: 'In Progress'
                             }
                         ]}/>

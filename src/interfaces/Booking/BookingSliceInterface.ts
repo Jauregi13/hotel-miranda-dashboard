@@ -1,12 +1,13 @@
 import { StatusSlice } from "../types";
-import { BookingInterface } from "./BookingInterface";
+import { BookingInterface, BookingUpdateInterface } from "./BookingInterface";
 
 
 
 export interface BookingSliceInterface {
 
     data: BookingInterface[]
-    actualBooking: BookingInterface | undefined
+    bookingToUpdate: BookingInterface | undefined
+    bookingUpdated: boolean
     status: StatusSlice
     error: string | undefined
 }

@@ -8,7 +8,7 @@ import { OptionsStyled } from "../../components/TabsWithOptions/OptionsStyled"
 import { TabsStyled } from "../../components/TabsWithOptions/TabsStyled"
 import { TabsWithOptionsStyled } from "../../components/TabsWithOptions/TabsWithOptionsStyled"
 import { BookingsPageStyled } from "./BookingsPageStyled"
-import { getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
+import { bookingIsUpdated, getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
 import { useEffect, useState } from "react"
 import { getBookingsThunk } from "../../features/bookings/bookingsThunk"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
@@ -24,6 +24,7 @@ export const BookingsPage = () => {
     const bookings = useAppSelector<BookingInterface[]>(getBookingsData)
     const bookingsStatus = useAppSelector<StatusSlice>(getBookingsStatus)
     const bookingsError = useAppSelector(getBookingsError)
+    const bookingIsupdated = useAppSelector<boolean>(bookingIsUpdated)
     const [loading, setLoading] = useState<boolean>(false)
     const [bookingsList,setBookingsList] = useState<BookingInterface[]>([])
     const [tabActive, setTabActive] = useState<string>('all')
@@ -31,8 +32,19 @@ export const BookingsPage = () => {
     const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric'}
     const timeOptions : Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: true}
 
-    useEffect(() => {        
 
+    useEffect(() => {
+
+        if(bookingIsupdated){
+            dispatch(getBookingsThunk())
+        }
+
+    },[])
+
+    useEffect(() => {   
+
+        
+        
         switch (bookingsStatus) {
             case 'idle':
 
@@ -55,6 +67,7 @@ export const BookingsPage = () => {
                 setLoading(false)
                 setBookingsList(bookings)
                 handleOrderBookings(bookings,orderValue)
+
                 break;
         }
 

@@ -2,7 +2,7 @@
 
 export interface RoomInterface {
 
-    roomId: string
+    room_id: string
     room_number: string
     room_type: string
     description: string
