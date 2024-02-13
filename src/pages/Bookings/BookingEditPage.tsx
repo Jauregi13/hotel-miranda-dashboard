@@ -31,7 +31,8 @@ export const BookingEditPage = () => {
     },[])
 
     useEffect(() => {
-
+        console.log(id);
+        
         if(id !== undefined && bookingStatus === 'idle'){
             
             dispatch(getBookingByIdThunk(id))
@@ -41,7 +42,8 @@ export const BookingEditPage = () => {
     },[dispatch,bookingStatus])
 
     useMemo(() => {
-
+        console.log(getBooking);
+        
         setBooking(getBooking)                
 
     },[getBooking])

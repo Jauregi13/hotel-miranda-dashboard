@@ -15,6 +15,7 @@ import { getEmployeesThunk } from "../../features/employees/employeesThunk"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { EmployeeInterface } from "../../interfaces/Employee/EmployeeInterface"
 import { Status, StatusSlice } from "../../interfaces/types"
+import { ButtonEditDelete } from "../../components/ButtonEditDelete/ButtonEditDelete"
 
 export const UsersPage = () => {
 
@@ -193,6 +194,9 @@ export const UsersPage = () => {
                                                 : <ButtonStyled status="inactive">INACTIVE</ButtonStyled> 
                                             }
                                             
+                                        </td>
+                                        <td>
+                                            <ButtonEditDelete id={employee.userId}  type="users"/>
                                         </td>
                                     </tr>
                                 ))

@@ -45,17 +45,22 @@ export const ButtonEditDelete = (props: PropEditDelete) => {
                             
                         </li>
                         <li>
-                            <Link to={'/bookings'}>
+                            <Link to={`/${props.type}`}>
                                 <DeleteIcon /> <p>Delete</p>
                             </Link>
                             
                         </li>
-                        <li>
+                        {
+                            props.type == 'bookings' &&
+
+                            <li>
                             <Link to={`/${props.type}/${props.id}`}>
                                 <InfoIcon/> <p>Info</p>
                             </Link>
                             
                         </li>
+                        }
+                        
                     </ul>
                 </div>
             </button>

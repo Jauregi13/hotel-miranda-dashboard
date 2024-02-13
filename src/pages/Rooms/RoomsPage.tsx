@@ -15,6 +15,7 @@ import { getRoomsThunk } from "../../features/rooms/roomsThunk"
 import { RoomInterface } from "../../interfaces/Room/RoomInterface"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { StatusSlice } from "../../interfaces/types"
+import { ButtonEditDelete } from "../../components/ButtonEditDelete/ButtonEditDelete"
 
 
 export const RoomsPage = () => {
@@ -210,7 +211,12 @@ export const RoomsPage = () => {
                                 </td>
                                 <td><p>${room.price}/night</p></td>
                                 <td><p>${(room.price - (room.price * room.offer/100)).toFixed(2)}/night</p></td>
-                                <td><ButtonStyled status={room.available ? 'Available': 'Booked'}>{room.available ? 'Available' : 'Booked'}</ButtonStyled></td>
+                                <td>
+                                    <ButtonStyled status={room.available ? 'Available': 'Booked'}>{room.available ? 'Available' : 'Booked'}</ButtonStyled>
+                                </td>
+                                <td>
+                                    <ButtonEditDelete id={room.roomId} type="rooms"/>
+                                </td>
                             </tr>
                         ))
                         

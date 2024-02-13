@@ -11,6 +11,7 @@ import { UsersPage } from './pages/Users/UsersPage'
 import { LoginPage } from './pages/Login/LoginPage'
 import { GuestDetails } from './pages/GuestDetails/GuestDetails'
 import { BookingEditPage } from './pages/Bookings/BookingEditPage'
+import { RoomsEditPage } from './pages/Rooms/RoomsEditPage'
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
               <Route element={<Layout />}>
                 <Route path='/' element={<HomePage />} />
                 <Route path='/rooms' element={<RoomsPage />} />
+                <Route path='/rooms/:id/edit' element={<RoomsEditPage />} />
                 <Route path='/bookings' element={<BookingsPage />}/>
                 <Route path='/bookings/:id' element={<GuestDetails />} />
                 <Route path='/bookings/:id/edit' element={<BookingEditPage />} />

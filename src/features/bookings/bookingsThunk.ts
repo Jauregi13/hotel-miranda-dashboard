@@ -14,7 +14,7 @@ export const getBookingsThunk = createAsyncThunk<BookingInterface[], void>('book
             "Content-Type": "application/json"
         }
     })
-
+        
     return response.json()
 
 })
