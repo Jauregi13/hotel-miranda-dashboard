@@ -8,7 +8,7 @@ export const LoginPageStyled = styled.div`
     margin: 0 auto;
     width: 40%;
     text-align: center;
-    margin-top: 10em;
+    margin-top: 5em;
     box-shadow: 0px 16px 30px 30px #00000014;
     border-radius: 12px;
     padding-top: 2em;
