@@ -81,7 +81,7 @@ export const LoginPage = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password"/>
                 </InputStyled>
-                <ButtonStyled type="submit" status="login">LOGIN</ButtonStyled>   
+                <ButtonStyled type="submit" status="login">LOGIN</ButtonStyled>  
             </form>
             <p>User: admin</p>
             <p>Password: admin</p>
